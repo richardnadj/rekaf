@@ -11,6 +11,7 @@ var gulp = require('gulp'),
 	git = require('gulp-git'),
 	jscs = require('gulp-jscs'),
 	header = require('gulp-header'),
+	rename = require('gulp-rename'),
 	browserSync = require('browser-sync');
 
 var vars = {
@@ -70,6 +71,7 @@ gulp.task('publish-js', ['clean-live'], function() {
 	return gulp.src(vars.devDir+'js/'+vars.pluginName+'.js')
 		.pipe(uglify())
 		.pipe(header(banner, {pkg: pkg}))
+		.pipe(rename({suffix: '.min'}))
 		.pipe(gulp.dest(vars.distDir+'js'));
 })
 
