@@ -5,10 +5,8 @@ A jQuery plugin that takes care of all the small nuances of creating a select. S
 ### Usage ###
 
 
-Initiate with `$(selector).rekaf({'some':'property'});`
-
-Invoke methods with `$(selector).rekaf('method', {'some':'property'});`
-
+Initiate with `$(selector).rekaf({'some':'property'});`   
+Invoke methods with `$(selector).rekaf('method', {'some':'property'});`   
 Example
 
 	$('.fake-selector').rekaf({
@@ -25,8 +23,7 @@ Following structure is required for selector to work. (Using Emmet tab complete 
  
 #### zIndex ####
 
-*Default* `1500`
-
+*Default* `1500`   
 *Expects* `integer`
 
 Defines which z-index dropdowns should work. A normal select is the highest property on the page so that nothing obstructs it's usage.
@@ -36,8 +33,7 @@ Defines which z-index dropdowns should work. A normal select is the highest prop
 
 #### multiselect ####
 
-*Default* `false`
-
+*Default* `false`   
 *Expects* `boolean`
 
 Enables the user to be able to select more than one value in the drop down. *Warning this is not yet fully implemented*
@@ -47,8 +43,7 @@ Enables the user to be able to select more than one value in the drop down. *War
 
 #### clickRemoveSelected ####
 
-*Default* `false`
-
+*Default* `false`   
 *Expects* `boolean`
 
 If the user clicks on the same value that is already selected the selection will be removed and the initial state will be returned.
@@ -58,8 +53,7 @@ If the user clicks on the same value that is already selected the selection will
 
 #### debug ####
 
-*Default* `false`
-
+*Default* `false`   
 *Expects* `boolean`
 
 Helpful to get some debugging data. This should be off for production prints object data straight to the console.
