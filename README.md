@@ -9,7 +9,7 @@ Initiate with `$(selector).rekaf({'some':'property'});`
 Invoke methods with `$(selector).rekaf('method', {'some':'property'});`   
 Example
 
-	$('.fake-selector').rekaf({
+	$('.fake-select').rekaf({
 		debug: true,
 		zIndex: 2000
 	})
