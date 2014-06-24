@@ -1,32 +1,3 @@
-/**
- * 
- * Initiate with        $(selector).rekaf({'some':'property'});
- * Invoke methods with  $(selector).rekaf('method', {'some':'property'});
- *  
- * -----------------
- * Structure:
- * -----------------
- *  
- * Following structure is required for selector to work. 
- * div>span[data-orig-text=orig]+ul>li*3
- *  
- * -----------------
- * Properties:
- * -----------------
- *
- * 'zIndex'          -> integer                     (default 1500)
- *                      define zIndex dropdowns should work at.
- *
- * 'mulitselect'     -> boolean                     (default false)
- *                      enables user to select more than one value
- *
- * 'clickRemoveSelected'-> boolean                     (default false)
- *                      if user clicks on the selected item it will remove it from the list.
- *
- * 'debug'           -> boolean                     (default false)
- *                      Help in debugging the plugin, off for production
- *
-*/
 ;(function($, window) {
 	
 	var priv = {
