@@ -1,0 +1,16 @@
+$lgrey: #ccc;
+
+//Fake Select
+.fake-select { position: relative; overflow: hidden; cursor: pointer; box-sizing: border-box; overflow: visible; height: auto; text-align: left; height: 33px; line-height: 33px; background-color: #fff; border: 1px solid $lgrey;
+	&:after { content: ""; border: 10px solid transparent; border-top-color: #333; position: absolute; z-index: 10; right: 10px; top: 50%; margin-top: -5px; }
+	span { display: block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; cursor: pointer; user-select: none; padding: 0 10px; position: relative; z-index: 11; }
+	ul { position: absolute; display: none; background-color: #fff; width: 100%; border: 1px solid $lgrey; padding: 5px 0; left: -1px; top: 33px; list-style: none; margin: 0; }
+	li { padding: 0 10px;
+		&.selected a { padding-left: 20px; position: relative; 
+				&:before { content: "*"; position: absolute; left: 10px; } } }
+	a { display: block;
+		&:hover { color: #000; } }
+	label { display: block; }
+	input[type=radio] { margin-right: 10px; }
+	.disabled { opacity: 0.3; cursor: default; }
+	.remove { width: auto; height: auto; } }

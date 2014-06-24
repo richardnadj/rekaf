@@ -1,0 +1,21 @@
+{
+  "name": "ys-rekaf",
+  "version": "0.1.0",
+  "authors": [
+    "Richard Herries <richard@youngskilled.com>"
+  ],
+  "description": "Rekaf a fake select element",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "1.11",
+    "normalize-scss": "~3.0.1"
+  }
+}
