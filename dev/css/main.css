@@ -784,9 +784,6 @@ section {
   .fake-select .disabled {
     opacity: 0.3;
     cursor: default; }
-  .fake-select .remove {
-    width: auto;
-    height: auto; }
 
 .fake-select-list {
   position: absolute;

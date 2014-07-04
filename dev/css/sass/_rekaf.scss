@@ -2,6 +2,5 @@
 .fake-select { position: relative; cursor: pointer; text-align: left; box-sizing: border-box;
 	>.title { display: block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; user-select: none; }	
 	a, label { display: block; }
-	.disabled { opacity: 0.3; cursor: default; }
-	.remove { width: auto; height: auto; } }
+	.disabled { opacity: 0.3; cursor: default; } }
 .fake-select-list { position: absolute; display: none; left: 0; list-style: none; margin: 0; padding: 0; background-color: white; width: 100%; }

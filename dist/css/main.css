@@ -61,5 +61,4 @@ section{margin-top:50px}
 .fake-select>.title{display:block;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
 .fake-select a,.fake-select label{display:block}
 .fake-select .disabled{opacity:.3;cursor:default}
-.fake-select .remove{width:auto;height:auto}
 .fake-select-list{position:absolute;display:none;left:0;list-style:none;margin:0;padding:0;background-color:#fff;width:100%}
