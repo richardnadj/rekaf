@@ -18,7 +18,7 @@ Example
 
 Following structure is required for selector to work. (Using Emmet tab complete for HTML)
 
-	div>span[data-orig-text=orig]+ul>li*3
+	div.fake-select>span.title[data-orig-text=]+ul.fake-select-list>li*3
 
  
 #### zIndex ####
