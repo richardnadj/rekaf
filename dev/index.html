@@ -17,6 +17,7 @@
 			</section>
 			<section>
 				<h3>&hellip; with anchors</h3>
+				<a class="btn open-list" href="#">Open list below</a>
 				<div class="fake-select">
 					<span class="title" data-orig-text="Designer">Choose Designer</span>
 					<ul class="fake-select-list">
@@ -30,6 +31,7 @@
 			</section>
 			<section>
 				<h3>&hellip; with inputs</h3>
+				<a class="btn open-list" href="#">Open list below</a>
 				<div class="fake-select">
 					<span class="title" data-orig-text="Designer">Choose Designer</span>
 					<ul class="fake-select-list">
@@ -64,6 +66,11 @@
 		<script>
 			$(document).ready(function() {
 				$('.fake-select').rekaf();
+
+				$('.open-list').on('click', function(e){
+					e.preventDefault();
+					$(this).next().rekaf('open');
+				});
 
 				//Hide/display grid
 				$(window).on('keypress', function(e){

@@ -748,6 +748,22 @@ label {
   margin: 0 auto;
   max-width: 92%; }
 
+.btn {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 1px solid #333;
+  margin: 10px 0;
+  background-color: transparent;
+  color: #333;
+  display: inline-block;
+  padding: 0 10px;
+  height: 30px;
+  line-height: 28px; }
+  .btn:hover {
+    background-color: #333;
+    color: #F9FEF9; }
+
 section {
   margin-top: 50px; }
 

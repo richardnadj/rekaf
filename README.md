@@ -14,13 +14,14 @@ Example
 		zIndex: 2000
 	})
  
-#### HTML ####
+### HTML ###
 
 Following structure is required for selector to work. (Using Emmet tab complete for HTML)
 
 	div.fake-select>span.title[data-orig-text=]+ul.fake-select-list>li*3
 
- 
+### Properties ###
+
 #### zIndex ####
 
 *Default* `1500`   
@@ -60,6 +61,22 @@ Helpful to get some debugging data. This should be off for production prints obj
 
 	$(selector).rekaf({debug: false});
 
+### Methods ###
+
+#### open ####
+
+Trigger the select box to open.
+
+	$(selector).rekaf('open');
+
+
+### Changelog ###
+
+**Version 0.2.0**   
+Added a new method to open the select from an unrelated anchor.
+
+**Version 0.1.\***   
+Basic functionality of the drop down.
 
 ### Development ###
 

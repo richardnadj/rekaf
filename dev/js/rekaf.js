@@ -6,15 +6,26 @@
 
 			priv.enableEvents.apply($this);
 		},
+		openList: function() {
+			var $this = this;
+
+			$this.addClass('rekaf-opened').css('z-index', ($this.set.zIndex + 2)).find('ul').show();
+			$('#rekaf-screen').show();
+		},
+		closeList: function() {
+			var $this = this;
+
+			$('.rekaf-opened').removeClass('rekaf-opened').css('z-index', $this.set.zIndex).find('ul').hide();
+			$('#rekaf-screen').hide();
+		},
 		enableEvents: function() {
 			var $this = this;
 
 			$this.on('click', 'span', function() {
 				if(!$this.hasClass('rekaf-opened')) {
-					$this.addClass('rekaf-opened').css('z-index', ($this.set.zIndex + 2)).find('ul').show();
-					$('#rekaf-screen').show();
+					priv.openList.apply($this);
 				} else {
-					closeList();
+					priv.closeList.apply($this);
 				}
 			});
 
@@ -28,13 +39,16 @@
 				if($li.find('.remove').length > 0) $this.removeClass('selected');
 
 				if($this.set.multiselect === true) {
+					
 					$li.toggleClass('selected');
 					if($this.find('.selected').length > 0) {
 						$this.addClass('selected').find('span').addClass('selected');
 					} else {
 						$this.removeClass('selected').find('span').removeClass('selected');
 					}
+
 				} else {
+
 					$this.find('.selected').removeClass('selected');
 					if(isSelected && $this.set.clickRemoveSelected) {
 						//Reset to default
@@ -43,18 +57,14 @@
 						$li.addClass('selected');
 						$this.addClass('selected').find('span').text(text);
 					}
+
 				}
-				closeList();
+				priv.closeList.apply($this);
 			});
 
 			$('#rekaf-screen').on('click', function() {
-				closeList();                
+				priv.closeList.apply($this);
 			});
-
-			function closeList() {
-				$('.rekaf-opened').removeClass('rekaf-opened').css('z-index', $this.set.zIndex).find('ul').hide();
-				$('#rekaf-screen').hide();
-			}
 
 		}
 	};
@@ -97,6 +107,18 @@
 				priv.init.apply($this);
 				$this.data($this.set);
 
+			});
+		},
+		open: function(options) {
+			var init = $.extend({}, defaultOpts, options);
+
+			return this.each(function() {
+				var $this = $(this),
+					objectData = $this.data();
+
+				$this.set = $.extend({}, init, objectData);
+
+				priv.openList.apply($this);
 			});
 		}
 	};
