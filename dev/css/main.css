@@ -764,6 +764,10 @@ label {
     background-color: #333;
     color: #F9FEF9; }
 
+.triggered {
+  display: none;
+  padding: 0 10px; }
+
 section {
   margin-top: 50px; }
 

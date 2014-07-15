@@ -53,9 +53,11 @@
 					if(isSelected && $this.set.clickRemoveSelected) {
 						//Reset to default
 						$this.removeClass('selected').find('span').text($this.find('span').data('orig-text'));
+						$this.trigger('unselected.rekaf', [text]);
 					} else {
 						$li.addClass('selected');
 						$this.addClass('selected').find('span').text(text);
+						$this.trigger('selected.rekaf', [text]);
 					}
 
 				}

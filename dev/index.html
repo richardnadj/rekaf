@@ -17,7 +17,9 @@
 			</section>
 			<section>
 				<h3>&hellip; with anchors</h3>
-				<a class="btn open-list" href="#">Open list below</a>
+				<div class="function">
+					<a class="btn open-list" href="#">Open list below</a><span class="trig-selected triggered">Selected</span><span class="trig-unselected triggered">Unselected</span>
+				</div>
 				<div class="fake-select">
 					<span class="title" data-orig-text="Designer">Choose Designer</span>
 					<ul class="fake-select-list">
@@ -31,7 +33,9 @@
 			</section>
 			<section>
 				<h3>&hellip; with inputs</h3>
-				<a class="btn open-list" href="#">Open list below</a>
+				<div class="function">
+					<a class="btn open-list" href="#">Open list below</a><span class="trig-selected triggered">Selected</span><span class="trig-unselected triggered">Unselected</span>
+				</div>
 				<div class="fake-select">
 					<span class="title" data-orig-text="Designer">Choose Designer</span>
 					<ul class="fake-select-list">
@@ -69,7 +73,17 @@
 
 				$('.open-list').on('click', function(e){
 					e.preventDefault();
-					$(this).next().rekaf('open');
+					$(this).closest('section').find('.fake-select').rekaf('open');
+				});
+
+				$('.fake-select').on('selected.rekaf', function(e, value){
+					var $sel = $(this).closest('section').find('.trig-selected');
+					$sel.stop(true,true).text(value + ' - selected').show().fadeOut(2000);
+				});
+
+				$('.fake-select').on('unselected.rekaf', function(e, value){
+					var $sel = $(this).closest('section').find('.trig-unselected');
+					$sel.stop(true,true).text(value + ' - unselected').show().fadeOut(2000);
 				});
 
 				//Hide/display grid

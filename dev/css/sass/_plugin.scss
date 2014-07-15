@@ -19,6 +19,7 @@ label { cursor: pointer; }
 .main-cont { width: $pageWidth; margin: 0 auto; max-width: $maxPageWidth; }
 .btn { box-sizing: border-box; border: 1px solid #333; margin: 10px 0; background-color: transparent; color: #333; display: inline-block; padding: 0 10px; height: 30px; line-height: 28px;
 	&:hover { background-color: #333; color: #F9FEF9; } }
+.triggered { display: none; padding: 0 10px; }
 section { margin-top: 50px; }
 .ingress { width: w(8, 0); }
 .signature { width: w(6, 0); margin: 250px auto 0; text-align: center; display: block; border-top: 1px solid #ccc;

@@ -55,6 +55,7 @@ label{cursor:pointer}
 .main-cont{width:1170px;margin:0 auto;max-width:92%}
 .btn{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;border:1px solid #333;margin:10px 0;background-color:transparent;color:#333;display:inline-block;padding:0 10px;height:30px;line-height:28px}
 .btn:hover{background-color:#333;color:#F9FEF9}
+.triggered{display:none;padding:0 10px}
 section{margin-top:50px}
 .ingress{width:65.81197%}
 .signature{width:48.71795%;margin:250px auto 0;text-align:center;display:block;border-top:1px solid #ccc}
