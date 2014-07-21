@@ -98,6 +98,9 @@ Trigger the select box to open.
 
 ### Changelog ###
 
+**Version 0.5.1**   
+Updated distribution folder.
+
 **Version 0.5.0**   
 Added an event for opened select, changed how all events are called. rekaf then event.
 
