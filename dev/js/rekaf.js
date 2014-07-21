@@ -18,7 +18,7 @@
 				$this.find('.selected').removeClass('selected');
 				$inputChecked.closest('li').addClass('selected');
 				$this.addClass('selected').find('span').text(text);
-				$this.trigger('selected.rekaf', [text]);
+				$this.trigger('rekaf.selected', [text]);
 			}
 
 			if($inputDisabled.length > 0) {
@@ -74,11 +74,11 @@
 					if(isSelected && $this.set.clickRemoveSelected) {
 						//Reset to default
 						$this.removeClass('selected').find('span').text($this.find('span').data('orig-text'));
-						$this.trigger('unselected.rekaf', [text]);
+						$this.trigger('rekaf.unselected', [text]);
 					} else {
 						$li.addClass('selected');
 						$this.addClass('selected').find('span').text(text);
-						$this.trigger('selected.rekaf', [text]);
+						$this.trigger('rekaf.selected', [text]);
 					}
 
 				}

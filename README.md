@@ -63,20 +63,28 @@ Helpful to get some debugging data. This should be off for production prints obj
 
 ### Events ###
 
-#### selected.rekaf ####
+#### rekaf.selected ####
 
 An option has been selected. This triggers an event on the element that has been called with rekaf.
 
-	$(selector).on(selected.rekaf, function(){
+	$(selector).on(rekaf.selected, function(){
 		//Do something now a value is selected.
 	})
 
-#### unselected.rekaf ####
+#### rekaf.unselected ####
 
 An option has been unselected. This triggers an event on the element that has been called with rekaf. This often means that it now has no value.
 
-	$(selector).on(unselected.rekaf, function(){
+	$(selector).on(rekaf.unselected, function(){
 		//Do something now the value is unselected.
+	})
+
+#### rekaf.opened ####
+
+The selector has been opened.
+
+	$(selector).on(rekaf.opened, function(){
+		//Do something now the select is opened
 	})
 
 ### Methods ###
@@ -89,6 +97,9 @@ Trigger the select box to open.
 
 
 ### Changelog ###
+
+**Version 0.5.0**   
+Added an event for opened select, changed how all events are called. rekaf then event.
 
 **Version 0.4.0**   
 Added classes for items that are already selected or disabled upon initiation. Added uncompressed file for development with on client.
