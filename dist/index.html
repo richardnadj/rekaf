@@ -76,12 +76,12 @@
 					$(this).closest('section').find('.fake-select').rekaf('open');
 				});
 
-				$('.fake-select').on('selected.rekaf', function(e, value){
+				$('.fake-select').on('rekaf.selected', function(e, value){
 					var $sel = $(this).closest('section').find('.trig-selected');
 					$sel.stop(true,true).text(value + ' - selected').show().fadeOut(2000);
 				});
 
-				$('.fake-select').on('unselected.rekaf', function(e, value){
+				$('.fake-select').on('rekaf.unselected', function(e, value){
 					var $sel = $(this).closest('section').find('.trig-unselected');
 					$sel.stop(true,true).text(value + ' - unselected').show().fadeOut(2000);
 				});
