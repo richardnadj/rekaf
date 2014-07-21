@@ -90,6 +90,9 @@ Trigger the select box to open.
 
 ### Changelog ###
 
+**Version 0.4.0**   
+Added classes for items that are already selected or disabled upon initiation. Added uncompressed file for development with on client.
+
 **Version 0.3.0**   
 Added events to listen to when an item has been selected or deselected.
 

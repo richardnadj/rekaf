@@ -69,6 +69,7 @@ gulp.task('publish-css', ['clean-live'], function() {
 
 gulp.task('publish-js', ['clean-live'], function() {
 	return gulp.src(vars.devDir+'js/'+vars.pluginName+'.js')
+		.pipe(gulp.dest(vars.distDir+'js'))
 		.pipe(uglify())
 		.pipe(header(banner, {pkg: pkg}))
 		.pipe(rename({suffix: '.min'}))
@@ -123,7 +124,8 @@ gulp.task('plugin-js', function() {
 	return gulp.src([vars.devDir+'js/'+vars.pluginName+'.js', vars.devDir+'js/styling-example.js'])
 		.pipe(jscs().on("error", notify.onError("JSCS: <%= error %>")))
 		.pipe(jshint())
-		.pipe(jshint.reporter('default'));
+		.pipe(jshint.reporter('default'))
+		.pipe(browserSync.reload({stream:true}));
 });
 
 gulp.task('init-js', function() {
