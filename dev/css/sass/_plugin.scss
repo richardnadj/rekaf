@@ -2,6 +2,7 @@
 
 $font: 'Roboto', sans-serif;
 $fontCol: #333;
+$lgrey: #ccc;
 
 html { background-color: #F9FEF9; font-family: $font; font-size: 12px; }
 h1, h2, h3, h4, h5, h6 { margin: ($vMargin/20) 0 ($vMargin/10); font-family: $font; font-weight: 100; }
@@ -17,10 +18,25 @@ iframe { width: 100%; }
 label { cursor: pointer; }
 
 .main-cont { width: $pageWidth; margin: 0 auto; max-width: $maxPageWidth; }
-.btn { box-sizing: border-box; border: 1px solid #333; margin: 10px 0; background-color: transparent; color: #333; display: inline-block; padding: 0 10px; height: 30px; line-height: 28px;
+.btn { box-sizing: border-box; border: 1px solid #333; margin: 10px 10px 10px 0; background-color: transparent; color: #333; display: inline-block; padding: 0 10px; height: 30px; line-height: 28px;
 	&:hover { background-color: #333; color: #F9FEF9; } }
 .triggered { display: none; padding: 0 10px; }
 section { margin-top: 50px; }
 .ingress { width: w(8, 0); }
 .signature { width: w(6, 0); margin: 250px auto 0; text-align: center; display: block; border-top: 1px solid #ccc;
 	svg { padding-top: 30px; } }
+.multi-select { width: w(3) }
+
+//Fake Select Styling
+.fake-select { height: 33px; line-height: 33px; background-color: #fff; border: 1px solid $lgrey;
+	&:after { content: ""; border: 10px solid transparent; border-top-color: #333; position: absolute; z-index: 10; right: 10px; top: 50%; margin-top: -5px; }
+	> .title { padding: 0 10px; position: relative; z-index: 11; }
+	ul { background-color: #fff; width: 100%; border: 1px solid $lgrey; padding: 5px 0; left: -1px; top: 33px; }
+	li { padding: 0 10px;
+		&.selected a { padding-left: 20px; position: relative;
+			&:before { content: "*"; position: absolute; left: 10px; } } }
+	a { display: block;
+		&:hover { color: #000; } }
+	label { display: block; }
+	input[type=radio] { margin-right: 10px; }
+	.disabled { opacity: 0.3; cursor: default; } }

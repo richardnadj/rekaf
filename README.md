@@ -37,9 +37,39 @@ Defines which z-index dropdowns should work. A normal select is the highest prop
 *Default* `false`   
 *Expects* `boolean`
 
-Enables the user to be able to select more than one value in the drop down. *Warning this is not yet fully implemented*
+Enables the user to be able to select more than one value in the drop down. Now fully implemented use with `multiselectTitleLimit` and `multiselectTitleLimitText`.
 
 	$(selector).rekaf({multiselect: false});
+
+
+#### multiselectTitleLimit ####
+
+*Default* `4`   
+*Expects* `integer`
+
+How many names should be displayed both moving on to "items selected".
+
+	$(selector).rekaf({multiselectTitleLimit: 4});
+
+
+#### multiselectTitleLimitText ####
+
+*Default* ` items selected`   
+*Expects* `string`
+
+Once multiselectTitleLimit is reached this text is used in association with multiselectTitleLimit. *i.e. 4 items selected*
+
+	$(selector).rekaf({multiselectTitleLimitText: ' items selected'});
+
+
+#### delimiter ####
+
+*Default* `, `   
+*Expects* `string`
+
+Delimits text when more than one option is selected in a multiselect dropdown.
+
+	$(selector).rekaf({delimiter: ', '});
 
 
 #### clickRemoveSelected ####
@@ -95,8 +125,17 @@ Trigger the select box to open.
 
 	$(selector).rekaf('open');
 
+#### update ####
+
+Trigger an update on the selects so that the selects reflect the items selected.
+
+	$(selector).rekaf('update');
+
 
 ### Changelog ###
+
+**Version 0.6.0**   
+Added an update method so that when an item is updated it is reflected in the select. Added complete functionality for multiselect.
 
 **Version 0.5.1**   
 Updated distribution folder.

@@ -1,6 +1,6 @@
 {
   "name": "ys-rekaf",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "main": "dist/rekaf.js",
   "authors": [
     "Richard Herries <richard@youngskilled.com>"

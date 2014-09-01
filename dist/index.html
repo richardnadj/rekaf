@@ -13,14 +13,15 @@
 		<main class="main-cont">
 			<section>
 				<h1>Fake Selects</h1>
-				<p class="ingress">To mimic the functionality of a select but to have the control of Javascript to maniuplate and open them afterward.</p>
+				<p class="ingress">To mimic the functionality of a select but to have the control of Javascript to manipulate and open them afterward.</p>
 			</section>
 			<section>
 				<h3>&hellip; with anchors</h3>
+				<p>This also has on clickRemoveSelected which toggles selected.</p>
 				<div class="function">
 					<a class="btn open-list" href="#">Open list below</a><span class="trig-selected triggered">Selected</span><span class="trig-unselected triggered">Unselected</span>
 				</div>
-				<div class="fake-select">
+				<div class="fake-select single-select toggle-select">
 					<span class="title" data-orig-text="Designer">Choose Designer</span>
 					<ul class="fake-select-list">
 						<li><a href="#">Choose Designer</a></li>
@@ -33,10 +34,11 @@
 			</section>
 			<section>
 				<h3>&hellip; with inputs</h3>
+				<p>Standard fake-select with inputs in list.</p>
 				<div class="function">
-					<a class="btn open-list" href="#">Open list below</a><span class="trig-selected triggered">Selected</span><span class="trig-unselected triggered">Unselected</span>
+					<a class="btn open-list" href="#">Open list below</a><a class="btn select-from-list" href="#">Select some in list</a><span class="trig-selected triggered">Selected</span><span class="trig-unselected triggered">Unselected</span>
 				</div>
-				<div class="fake-select">
+				<div class="fake-select single-select input-select">
 					<span class="title" data-orig-text="Designer">Choose Designer</span>
 					<ul class="fake-select-list">
 						<li><label for="choose-designer"><input id="choose-designer" value="0" type="radio" name="designer">Choose Designer</label></li>
@@ -44,6 +46,22 @@
 						<li><label for="christian-louboutin"><input id="christian-louboutin" checked="checked" value="christian-louboutin" type="radio" name="designer">Christian Louboutin</label></li>
 						<li><label for="jimmy-choo"><input id="jimmy-choo" value="jimmy-choo" type="radio" name="designer">Jimmy Choo</label></li>
 						<li class="selected"><label for="manolo-blahnik"><input id="manolo-blahnik" value="manolo-blahnik" type="radio" name="designer">Manolo Blahnik</label></li>
+					</ul>
+				</div>
+			</section>
+			<section>
+				<h3>Multiselect</h3>
+				<div class="function">
+					<a class="btn open-list" href="#">Open list below</a><a class="btn select-from-list" href="#">Select some in list</a>
+				</div>
+				<div class="fake-select multi-select">
+					<span class="title" data-orig-text="Designer">Choose Designer</span>
+					<ul class="fake-select-list">
+						<li class="clear-select"><a href="#">Remove All</a></li>
+						<li><a href="#">Alexander McQueen</a></li>
+						<li><a href="#">Christian Louboutin</a></li>
+						<li><a href="#">Jimmy Choo</a></li>
+						<li><a href="#">Manolo Blahnik</a></li>
 					</ul>
 				</div>
 			</section>
@@ -69,21 +87,41 @@
 		<script type="text/javascript" src="/js/rekaf.js"></script>
 		<script>
 			$(document).ready(function() {
-				$('.fake-select').rekaf();
+				$('.input-select').rekaf();
+
+				$('.toggle-select').rekaf({
+					clickRemoveSelected: true
+				});
+
+				$('.multi-select').rekaf({
+					multiselect: true,
+					multiselectTitleLimit: 1
+				});
 
 				$('.open-list').on('click', function(e){
 					e.preventDefault();
 					$(this).closest('section').find('.fake-select').rekaf('open');
 				});
 
-				$('.fake-select').on('rekaf.selected', function(e, value){
+				$('.single-select').on('rekaf.selected', function(e, value){
+					//Event handling of when an item is selected
 					var $sel = $(this).closest('section').find('.trig-selected');
 					$sel.stop(true,true).text(value + ' - selected').show().fadeOut(2000);
 				});
 
-				$('.fake-select').on('rekaf.unselected', function(e, value){
+				$('.single-select').on('rekaf.unselected', function(e, value){
+					//Event handling of when an item is unselected
 					var $sel = $(this).closest('section').find('.trig-unselected');
 					$sel.stop(true,true).text(value + ' - unselected').show().fadeOut(2000);
+				});
+
+				$('.select-from-list').on('click', function(e){
+					e.preventDefault();
+					var $cont = $(this).closest('section'),
+						whichNum = Math.floor(Math.random()*4);
+					console.log('set number ' + whichNum + ' on multiselect');
+					$cont.find('li:eq(' + whichNum + ')').toggleClass('selected');
+					$cont.find('.fake-select').rekaf('update');
 				});
 
 				//Hide/display grid

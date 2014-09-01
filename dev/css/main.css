@@ -753,7 +753,7 @@ label {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   border: 1px solid #333;
-  margin: 10px 0;
+  margin: 10px 10px 10px 0;
   background-color: transparent;
   color: #333;
   display: inline-block;
@@ -783,6 +783,55 @@ section {
   .signature svg {
     padding-top: 30px; }
 
+.multi-select {
+  width: 23.07692%; }
+
+.fake-select {
+  height: 33px;
+  line-height: 33px;
+  background-color: #fff;
+  border: 1px solid #ccc; }
+  .fake-select:after {
+    content: "";
+    border: 10px solid transparent;
+    border-top-color: #333;
+    position: absolute;
+    z-index: 10;
+    right: 10px;
+    top: 50%;
+    margin-top: -5px; }
+  .fake-select > .title {
+    padding: 0 10px;
+    position: relative;
+    z-index: 11; }
+  .fake-select ul {
+    background-color: #fff;
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 5px 0;
+    left: -1px;
+    top: 33px; }
+  .fake-select li {
+    padding: 0 10px; }
+    .fake-select li.selected a {
+      padding-left: 20px;
+      position: relative; }
+      .fake-select li.selected a:before {
+        content: "*";
+        position: absolute;
+        left: 10px; }
+  .fake-select a {
+    display: block; }
+    .fake-select a:hover {
+      color: #000; }
+  .fake-select label {
+    display: block; }
+  .fake-select input[type=radio] {
+    margin-right: 10px; }
+  .fake-select .disabled {
+    opacity: 0.3;
+    cursor: default; }
+
 .fake-select {
   position: relative;
   cursor: pointer;
@@ -805,6 +854,9 @@ section {
     opacity: 0.3;
     cursor: default; }
 
+.multi-select > .title {
+  white-space: normal; }
+
 .fake-select-list {
   position: absolute;
   display: none;
@@ -814,5 +866,8 @@ section {
   padding: 0;
   background-color: white;
   width: 100%; }
+
+.no-js .fake-select:hover .fake-select-list {
+  display: block; }
 
 /*# sourceMappingURL=main.css.map */

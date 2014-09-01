@@ -11,9 +11,27 @@ $maxPageWidth: 92%;
 $col: $colWidth / $totalWidth * 100%;
 $gut: $gutWidth / $totalWidth * 100%;
 
-@function w($num, $sub) {
+@function w($num, $sub:0) {
 	@return ($col + $gut) * $num - $gut - $sub;
 }
+
+//Parent Grid Width
+//--------------------
+// @$totalParentCols: width child spans of parent;
+// @$numParentCols: how wide in parent cols item should be. 0 = gutter.
+@function pw($totalParentCols, $numParentCols:0) {
+	$sectionRatio: $colWidth / $gutWidth;
+	$sections: ($sectionRatio * $totalParentCols) + $totalParentCols - 1;
+	$sectionW: 100 / $sections;
+	$childCol: $sectionRatio * $sectionW;
+	$childGut: $sectionW;
+	@if ($numParentCols == 0) {
+		@return	$childGut * 1%;
+	} @else {
+		@return (($childCol + $childGut) * $numParentCols - $childGut) * 1%;
+	}
+}
+
 
 @function fw($num, $sub) {
 	@return ($colWidth + $gutWidth) * $num - $gutWidth - $sub + px;

@@ -39,6 +39,56 @@
 			$('.rekaf-opened').removeClass('rekaf-opened').css('z-index', $this.set.zIndex).find('ul').hide();
 			$('#rekaf-screen').hide();
 		},
+		updateList: function() {
+			var $this = this,
+				text = '',
+				textList = $this.data('textList') || [];
+
+			$this.find('li').each(function(i) {
+				var currentItem = $(this).text(),
+					inListAtIndex = null;
+
+				for (var j = 0; j < textList.length; j++) {
+					if(currentItem === textList[j]) {
+						inListAtIndex = j;
+						break;
+					}
+				}
+
+				if($(this).hasClass('selected')) {
+					//Check that it's in the array if not add it.
+					if(inListAtIndex === null) {
+						if($this.set.debug === true) console.log('textList, currentItem, inListAtIndex push item', textList, currentItem, inListAtIndex);
+						textList.push(currentItem);
+					}
+				} else {
+					//Check that it's not in the array, if it is remove it.
+					if(inListAtIndex !== null) {
+						if($this.set.debug === true) console.log('textList, currentItem, inListAtIndex splice item', textList, currentItem, inListAtIndex);
+						textList.splice(inListAtIndex, 1);
+					}
+				}
+			});
+
+			if(textList.length > 0) {
+				if($this.set.multiselect) {
+					text = (textList.length > $this.set.multiselectTitleLimit) ? textList.length + $this.set.multiselectTitleLimitText : textList.join($this.set.delimiter);
+					$this.find('span').text(text);
+					$this.trigger('rekaf.selected', [textList]);
+				} else {
+					$this.find('span').text(textList[0]);
+					$this.trigger('rekaf.selected', [textList]);
+				}
+
+			} else {
+				//Nothing selected return to default settings.
+				$this.find('span').text($this.find('span').data('orig-text'));
+				$this.trigger('rekaf.unselected', [textList]);
+			}
+
+			$this.data('textList', textList);
+
+		},
 		enableEvents: function() {
 			var $this = this;
 
@@ -50,38 +100,63 @@
 				}
 			});
 
-			$this.on('click', 'li', function() {
+			$this.on('click', 'li', function(e) {
 				var $li = $(this),
-					text = $li.text(),
+					textList = $this.data('textList') || [],
 					isSelected = $li.hasClass('selected');
 
+				if($li.find('a')) e.preventDefault();
 				if($li.find('.' + $this.set.disabledClass).length > 0 || $li.hasClass($this.set.disabledClass)) return;
-
 				if($li.find('.remove').length > 0) $this.removeClass('selected');
 
 				if($this.set.multiselect === true) {
 					
-					$li.toggleClass('selected');
-					if($this.find('.selected').length > 0) {
-						$this.addClass('selected').find('span').addClass('selected');
+					if($li.hasClass('clear-select')) {
+						$this.find('.selected').removeClass('selected');
+						textList = [];
+						text = '';
 					} else {
-						$this.removeClass('selected').find('span').removeClass('selected');
+						if($li.hasClass('selected')) {
+							$li.removeClass('selected');
+							for (var i = 0; i < textList.length; i++) {
+								if(textList[i] === $li.text()) {
+									textList.splice(i, 1);
+									break;
+								}
+							}
+						} else {
+							$li.addClass('selected');
+							textList.push($li.text());
+						}
+						
+						text = (textList.length > $this.set.multiselectTitleLimit) ? textList.length + $this.set.multiselectTitleLimitText : textList.join($this.set.delimiter);
+					}
+
+					if(textList.length > 0) {
+						$this.addClass('selected').find('span').addClass('selected').text(text);
+						$this.trigger('rekaf.selected', [text]);
+					} else {
+						$this.removeClass('selected').find('span').removeClass('selected').text($this.find('span').data('orig-text'));
+						$this.trigger('rekaf.unselected', [text]);
 					}
 
 				} else {
+
+					textList[0] = $li.text();
 
 					$this.find('.selected').removeClass('selected');
 					if(isSelected && $this.set.clickRemoveSelected) {
 						//Reset to default
 						$this.removeClass('selected').find('span').text($this.find('span').data('orig-text'));
-						$this.trigger('rekaf.unselected', [text]);
+						$this.trigger('rekaf.unselected', [textList]);
 					} else {
 						$li.addClass('selected');
-						$this.addClass('selected').find('span').text(text);
-						$this.trigger('rekaf.selected', [text]);
+						$this.addClass('selected').find('span').text(textList[0]);
+						$this.trigger('rekaf.selected', [textList]);
 					}
 
 				}
+				$this.data('textList', textList);
 				priv.closeList.apply($this);
 			});
 
@@ -108,7 +183,7 @@
 			}
 
 			//Create a screen
-			$('body').prepend('<div id="rekaf-screen" style="position: fixed; top: 0; left: 0; ' + bgColor + 'width: 100%; height: 2000px; z-index: ' + (init.zIndex + 1) + '; display: none;"></div>');
+			if($('#rekaf-screen').length === 0) $('body').prepend('<div id="rekaf-screen" style="position: fixed; top: 0; left: 0; ' + bgColor + 'width: 100%; height: 2000px; z-index: ' + (init.zIndex + 1) + '; display: none;"></div>');
 
 			return this.each(function() {
 				var $this = $(this),
@@ -143,6 +218,19 @@
 
 				priv.openList.apply($this);
 			});
+		},
+		update: function(options) {
+			var init = $.extend({}, defaultOpts, options);
+
+			return this.each(function() {
+				var $this = $(this),
+					objectData = $this.data();
+
+				$this.set = $.extend({}, init, objectData);
+
+				priv.updateList.apply($this);
+
+			});
 		}
 	};
 
@@ -151,6 +239,9 @@
 		mulitselect: false,
 		clickRemoveSelected: false,
 		disabledClass: 'disabled',
+		multiselectTitleLimit: 4,
+		multiselectTitleLimitText: ' items selected',
+		delimiter: ', ',
 		debug: false
 	};
 
