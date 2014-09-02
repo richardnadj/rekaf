@@ -202,7 +202,12 @@
 					'position': 'relative'
 				});
 
-				priv.init.apply($this);
+				if(!$this.set.rekafIntiated) {
+					priv.init.apply($this);
+				} else {
+					console.warn(':::: You are re-running REKAF!!! It is only intended to be run once, try update. ::::');
+				}
+				$this.set.rekafIntiated = true;
 				$this.data($this.set);
 
 			});
@@ -233,6 +238,10 @@
 			});
 		}
 	};
+
+	var privateOpts = {
+		rekafIntiated: false
+	}
 
 	var defaultOpts = {
 		zIndex: 1500,

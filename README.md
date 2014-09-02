@@ -134,6 +134,9 @@ Trigger an update on the selects so that the selects reflect the items selected.
 
 ### Changelog ###
 
+**Version 0.6.2**   
+Added in a fix that stops rekaf being initiated more than once. A data object that is saved with the html. If the html is removed initiate rakaf again otherwise use update.
+
 **Version 0.6.1**   
 Fixed a bug that prevented the input being checked.
 
