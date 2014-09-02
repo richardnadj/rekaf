@@ -105,7 +105,7 @@
 					textList = $this.data('textList') || [],
 					isSelected = $li.hasClass('selected');
 
-				if($li.find('a')) e.preventDefault();
+				if($li.find('a').length > 0) e.preventDefault();
 				if($li.find('.' + $this.set.disabledClass).length > 0 || $li.hasClass($this.set.disabledClass)) return;
 				if($li.find('.remove').length > 0) $this.removeClass('selected');
 

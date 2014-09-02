@@ -134,6 +134,9 @@ Trigger an update on the selects so that the selects reflect the items selected.
 
 ### Changelog ###
 
+**Version 0.6.1**   
+Fixed a bug that prevented the input being checked.
+
 **Version 0.6.0**   
 Added an update method so that when an item is updated it is reflected in the select. Added complete functionality for multiselect.
 
