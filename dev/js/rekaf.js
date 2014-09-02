@@ -205,7 +205,7 @@
 				if(!$this.set.rekafIntiated) {
 					priv.init.apply($this);
 				} else {
-					console.warn(':::: You are re-running REKAF!!! It is only intended to be run once, try update. ::::');
+					if($this.set.debug === true) console.warn(':::: You are re-running REKAF!!! It is only intended to be run once, try update. ::::');
 				}
 				$this.set.rekafIntiated = true;
 				$this.data($this.set);
