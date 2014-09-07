@@ -105,7 +105,7 @@
 					textList = $this.data('textList') || [],
 					isSelected = $li.hasClass('selected');
 
-				if($li.find('a').length > 0) e.preventDefault();
+				if($li.find('a').length > 0 && $this.set.preventLinks) e.preventDefault();
 				if($li.find('.' + $this.set.disabledClass).length > 0 || $li.hasClass($this.set.disabledClass)) return;
 				if($li.find('.remove').length > 0) $this.removeClass('selected');
 
@@ -241,7 +241,7 @@
 
 	var privateOpts = {
 		rekafIntiated: false
-	}
+	};
 
 	var defaultOpts = {
 		zIndex: 1500,
@@ -251,6 +251,7 @@
 		multiselectTitleLimit: 4,
 		multiselectTitleLimitText: ' items selected',
 		delimiter: ', ',
+		preventLinks: true,
 		debug: false
 	};
 

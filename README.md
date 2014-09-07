@@ -82,6 +82,16 @@ If the user clicks on the same value that is already selected the selection will
 	$(selector).rekaf({clickRemoveSelected: false});
 
 
+#### preventLinks ####
+
+*Default* `false`   
+*Expects* `boolean`
+
+If events should be prevented or whether you would like the anchor to take effect.
+
+	$(selector).rekaf({preventLinks: true});
+
+
 #### debug ####
 
 *Default* `false`   
@@ -133,6 +143,9 @@ Trigger an update on the selects so that the selects reflect the items selected.
 
 
 ### Changelog ###
+
+**Version 0.7.0**   
+Added optional preventDefault allowing for links to be executed.
 
 **Version 0.6.3**   
 Removed debug message if debug flag isn't set to true for double loaded.
