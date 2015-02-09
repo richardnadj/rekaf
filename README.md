@@ -144,6 +144,9 @@ Trigger an update on the selects so that the selects reflect the items selected.
 
 ### Changelog ###
 
+**Version 0.7.1**   
+Updated jQuery requirement to be above 1.11
+
 **Version 0.7.0**   
 Added optional preventDefault allowing for links to be executed.
 

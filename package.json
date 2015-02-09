@@ -1,6 +1,6 @@
 {
   "name": "ys-rekaf",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Rekaf a fake select element",
   "main": "dev/index.html",
   "homepage": "http://youngskilled.com",
@@ -9,7 +9,7 @@
   "private": true,
   "devDependencies": {
     "browser-sync": "^0.9.1",
-    "gulp": "^3.8.1",
+    "gulp": "^3.8.10",
     "gulp-autoprefixer": "^0.0.7",
     "gulp-changed": "^0.4.0",
     "gulp-clean": "^0.3.0",

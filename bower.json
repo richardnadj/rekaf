@@ -1,6 +1,6 @@
 {
   "name": "ys-rekaf",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "main": "dist/rekaf.js",
   "authors": [
     "Richard Herries <richard@youngskilled.com>"
@@ -13,7 +13,7 @@
     "bower_components"
   ],
   "dependencies": {
-    "jquery": "1.11",
-    "normalize-scss": "~3.0.1"
+    "jquery": ">1.11",
+    "normalize-scss": ">3.0.1"
   }
 }
