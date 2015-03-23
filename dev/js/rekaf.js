@@ -15,9 +15,9 @@
 
 			if($inputChecked.length > 0) {
 				text = $inputChecked.closest('li').text();
-				$this.find('.selected').removeClass('selected');
-				$inputChecked.closest('li').addClass('selected');
-				$this.addClass('selected').find('span').text(text);
+				$this.find('.' + $this.set.selectedClass).removeClass($this.set.selectedClass);
+				$inputChecked.closest('li').addClass($this.set.selectedClass);
+				$this.addClass($this.set.selectedClass).find('span').text(text);
 				$this.trigger('rekaf.selected', [text]);
 			}
 
@@ -55,7 +55,7 @@
 					}
 				}
 
-				if($(this).hasClass('selected')) {
+				if($(this).hasClass($this.set.selectedClass)) {
 					//Check that it's in the array if not add it.
 					if(inListAtIndex === null) {
 						if($this.set.debug === true) console.log('textList, currentItem, inListAtIndex push item', textList, currentItem, inListAtIndex);
@@ -103,21 +103,21 @@
 			$this.on('click', 'li', function(e) {
 				var $li = $(this),
 					textList = $this.data('textList') || [],
-					isSelected = $li.hasClass('selected');
+					isSelected = $li.hasClass($this.set.selectedClass);
 
 				if($li.find('a').length > 0 && $this.set.preventLinks) e.preventDefault();
 				if($li.find('.' + $this.set.disabledClass).length > 0 || $li.hasClass($this.set.disabledClass)) return;
-				if($li.find('.remove').length > 0) $this.removeClass('selected');
+				if($li.find('.remove').length > 0) $this.removeClass($this.set.selectedClass);
 
 				if($this.set.multiselect === true) {
 					
 					if($li.hasClass('clear-select')) {
-						$this.find('.selected').removeClass('selected');
+						$this.find('.' + $this.set.selectedClass).removeClass($this.set.selectedClass);
 						textList = [];
 						text = '';
 					} else {
-						if($li.hasClass('selected')) {
-							$li.removeClass('selected');
+						if($li.hasClass($this.set.selectedClass)) {
+							$li.removeClass($this.set.selectedClass);
 							for (var i = 0; i < textList.length; i++) {
 								if(textList[i] === $li.text()) {
 									textList.splice(i, 1);
@@ -125,7 +125,7 @@
 								}
 							}
 						} else {
-							$li.addClass('selected');
+							$li.addClass($this.set.selectedClass);
 							textList.push($li.text());
 						}
 						
@@ -133,10 +133,10 @@
 					}
 
 					if(textList.length > 0) {
-						$this.addClass('selected').find('span').addClass('selected').text(text);
+						$this.addClass($this.set.selectedClass).find('span').addClass($this.set.selectedClass).text(text);
 						$this.trigger('rekaf.selected', [text]);
 					} else {
-						$this.removeClass('selected').find('span').removeClass('selected').text($this.find('span').data('orig-text'));
+						$this.removeClass($this.set.selectedClass).find('span').removeClass($this.set.selectedClass).text($this.find('span').data('orig-text'));
 						$this.trigger('rekaf.unselected', [text]);
 					}
 
@@ -144,14 +144,14 @@
 
 					textList[0] = $li.text();
 
-					$this.find('.selected').removeClass('selected');
+					$this.find('.' + $this.set.selectedClass).removeClass($this.set.selectedClass);
 					if(isSelected && $this.set.clickRemoveSelected) {
 						//Reset to default
-						$this.removeClass('selected').find('span').text($this.find('span').data('orig-text'));
+						$this.removeClass($this.set.selectedClass).find('span').text($this.find('span').data('orig-text'));
 						$this.trigger('rekaf.unselected', [textList]);
 					} else {
-						$li.addClass('selected');
-						$this.addClass('selected').find('span').text(textList[0]);
+						$li.addClass($this.set.selectedClass);
+						$this.addClass($this.set.selectedClass).find('span').text(textList[0]);
 						$this.trigger('rekaf.selected', [textList]);
 					}
 
@@ -248,6 +248,7 @@
 		mulitselect: false,
 		clickRemoveSelected: false,
 		disabledClass: 'disabled',
+		selectedClass: 'selected',
 		multiselectTitleLimit: 4,
 		multiselectTitleLimitText: ' items selected',
 		delimiter: ', ',
