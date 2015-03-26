@@ -8,16 +8,18 @@
 			priv.checkInputs.apply($this);
 		},
 		checkInputs: function() {
-			var $this = this,
-				$inputChecked = $this.find('input:checked'),
-				$inputDisabled = $this.find('input:disabled'),
-				text = '';
+			var $this = this;
+			var $inputChecked = $this.find('input:checked');
+			var $inputDisabled = $this.find('input:disabled');
+			var $li = $inputChecked.closest('li');
+			var text = '';
 
 			if($inputChecked.length > 0) {
-				text = $inputChecked.closest('li').text();
+				text = $li.text();
+				if(text === '' && $li.attr('title') !== undefined) text = $li.attr('title');
 				$this.find('.' + $this.set.selectedClass).removeClass($this.set.selectedClass);
-				$inputChecked.closest('li').addClass($this.set.selectedClass);
-				$this.addClass($this.set.selectedClass).find('span').text(text);
+				$li.addClass($this.set.selectedClass);
+				$this.addClass($this.set.selectedClass).find('span').first().text(text);
 				$this.trigger('rekaf.selected', [text]);
 			}
 
@@ -40,13 +42,15 @@
 			$('#rekaf-screen').hide();
 		},
 		updateList: function() {
-			var $this = this,
-				text = '',
-				textList = $this.data('textList') || [];
+			var $this = this;
+			var text = '';
+			var textList = $this.data('textList') || [];
 
 			$this.find('li').each(function(i) {
-				var currentItem = $(this).text(),
-					inListAtIndex = null;
+				var currentItem = $(this).text();
+				var inListAtIndex = null;
+
+				if(currentItem === '' && $(this).attr('title') !== undefined) currentItem = $(this).attr('title');
 
 				for (var j = 0; j < textList.length; j++) {
 					if(currentItem === textList[j]) {
@@ -73,16 +77,16 @@
 			if(textList.length > 0) {
 				if($this.set.multiselect) {
 					text = (textList.length > $this.set.multiselectTitleLimit) ? textList.length + $this.set.multiselectTitleLimitText : textList.join($this.set.delimiter);
-					$this.find('span').text(text);
+					$this.find('span').first().text(text);
 					$this.trigger('rekaf.selected', [textList]);
 				} else {
-					$this.find('span').text(textList[0]);
+					$this.find('span').first().text(textList[0]);
 					$this.trigger('rekaf.selected', [textList]);
 				}
 
 			} else {
 				//Nothing selected return to default settings.
-				$this.find('span').text($this.find('span').data('orig-text'));
+				$this.find('span').first().text($this.find('span').first().data('orig-text'));
 				$this.trigger('rekaf.unselected', [textList]);
 			}
 
@@ -100,10 +104,23 @@
 				}
 			});
 
+			$this.on('rekaf.resetSelect', function() {
+				var text = '';
+
+				$this.find('.' + $this.set.selectedClass).removeClass($this.set.selectedClass);
+				$this.removeClass($this.set.selectedClass).find('span').first().removeClass($this.set.selectedClass).text($this.find('span').first().data('orig-text'));
+				$this.trigger('rekaf.unselected', [text]);
+				$this.data('textList', []);
+				priv.closeList.apply($this);
+			});
+
 			$this.on('click', 'li', function(e) {
-				var $li = $(this),
-					textList = $this.data('textList') || [],
-					isSelected = $li.hasClass($this.set.selectedClass);
+				var $li = $(this);
+				var textList = $this.data('textList') || [];
+				var isSelected = $li.hasClass($this.set.selectedClass);
+				var innerText = $li.text();
+
+				if(innerText === '' && $li.attr('title') !== undefined) innerText = $li.attr('title');
 
 				if($li.find('a').length > 0 && $this.set.preventLinks) e.preventDefault();
 				if($li.find('.' + $this.set.disabledClass).length > 0 || $li.hasClass($this.set.disabledClass)) return;
@@ -119,39 +136,39 @@
 						if($li.hasClass($this.set.selectedClass)) {
 							$li.removeClass($this.set.selectedClass);
 							for (var i = 0; i < textList.length; i++) {
-								if(textList[i] === $li.text()) {
+								if(textList[i] === innerText) {
 									textList.splice(i, 1);
 									break;
 								}
 							}
 						} else {
 							$li.addClass($this.set.selectedClass);
-							textList.push($li.text());
+							textList.push(innerText);
 						}
 						
 						text = (textList.length > $this.set.multiselectTitleLimit) ? textList.length + $this.set.multiselectTitleLimitText : textList.join($this.set.delimiter);
 					}
 
 					if(textList.length > 0) {
-						$this.addClass($this.set.selectedClass).find('span').addClass($this.set.selectedClass).text(text);
+						$this.addClass($this.set.selectedClass).find('span').first().addClass($this.set.selectedClass).text(text);
 						$this.trigger('rekaf.selected', [text]);
 					} else {
-						$this.removeClass($this.set.selectedClass).find('span').removeClass($this.set.selectedClass).text($this.find('span').data('orig-text'));
+						$this.removeClass($this.set.selectedClass).find('span').first().removeClass($this.set.selectedClass).text($this.find('span').first().data('orig-text'));
 						$this.trigger('rekaf.unselected', [text]);
 					}
 
 				} else {
 
-					textList[0] = $li.text();
+					textList[0] = innerText;
 
 					$this.find('.' + $this.set.selectedClass).removeClass($this.set.selectedClass);
 					if(isSelected && $this.set.clickRemoveSelected) {
 						//Reset to default
-						$this.removeClass($this.set.selectedClass).find('span').text($this.find('span').data('orig-text'));
+						$this.removeClass($this.set.selectedClass).find('span').first().text($this.find('span').first().data('orig-text'));
 						$this.trigger('rekaf.unselected', [textList]);
 					} else {
 						$li.addClass($this.set.selectedClass);
-						$this.addClass($this.set.selectedClass).find('span').text(textList[0]);
+						$this.addClass($this.set.selectedClass).find('span').first().text(textList[0]);
 						$this.trigger('rekaf.selected', [textList]);
 					}
 

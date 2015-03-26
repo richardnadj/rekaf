@@ -144,6 +144,9 @@ Trigger an update on the selects so that the selects reflect the items selected.
 
 ### Changelog ###
 
+**Version 0.7.3**   
+Filtered out span element to the first span in case there are spans in the fake select. If list items have no text use title attribute.
+
 **Version 0.7.2**   
 Lowered jQuery requirement to be above 1.7 added in option to redetermine select class good due to differences between this and the filter.
 
