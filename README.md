@@ -141,8 +141,17 @@ Trigger an update on the selects so that the selects reflect the items selected.
 
 	$(selector).rekaf('update');
 
+#### reset ####
+
+Clear all lists that have previously selected items.
+
+	$(selector).rekaf('reset');
+
 
 ### Changelog ###
+
+**Version 0.7.4**   
+Added a new method to trigger selects to clear/reset. Also listening to remove class in multiselect list to reset dropdown.
 
 **Version 0.7.3**   
 Filtered out span element to the first span in case there are spans in the fake select. If list items have no text use title attribute.

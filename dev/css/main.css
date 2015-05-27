@@ -784,7 +784,10 @@ section {
     padding-top: 30px; }
 
 .multi-select {
-  width: 23.07692%; }
+  width: 23.07692%;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 20px; }
 
 .fake-select {
   height: 33px;

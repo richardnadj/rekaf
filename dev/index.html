@@ -55,13 +55,38 @@
 					<a class="btn open-list" href="#">Open list below</a><a class="btn select-from-list" href="#">Select some in list</a>
 				</div>
 				<div class="fake-select multi-select">
-					<span class="title" data-orig-text="Designer">Choose Designer</span>
+					<span class="title" data-orig-text="Choose Designer">Choose Designer</span>
 					<ul class="fake-select-list">
 						<li class="clear-select"><a href="#">Remove All</a></li>
 						<li><a href="#">Alexander McQueen</a></li>
 						<li><a href="#">Christian Louboutin</a></li>
 						<li><a href="#">Jimmy Choo</a></li>
 						<li><a href="#">Manolo Blahnik</a></li>
+					</ul>
+				</div>
+			</section>
+			<section>
+				<h3>Multiselect Test</h3>
+				<div class="function">
+					<a class="btn clear-all-list" href="#">Clear all selects</a>
+				</div>
+				<div class="fake-select multi-select">
+					<span class="title" data-orig-text="Choose Designer">Choose Designer</span>
+					<ul class="fake-select-list">
+						<li><a class="remove" href="#">Choose Designer</a></li>
+						<li><a href="#">Alexander McQueen</a></li>
+						<li><a href="#">Christian Louboutin</a></li>
+						<li><a href="#">Jimmy Choo</a></li>
+						<li><a href="#">Manolo Blahnik</a></li>
+					</ul>
+				</div><div class="fake-select multi-select">
+					<span class="title" data-orig-text="Choose Color">Choose Color</span>
+					<ul class="fake-select-list">
+						<li><a class="remove" href="#">Choose Color</a></li>
+						<li><a href="#">Black</a></li>
+						<li><a href="#">Blue</a></li>
+						<li><a href="#">Red</a></li>
+						<li><a href="#">White</a></li>
 					</ul>
 				</div>
 			</section>
@@ -101,6 +126,11 @@
 				$('.open-list').on('click', function(e){
 					e.preventDefault();
 					$(this).closest('section').find('.fake-select').rekaf('open');
+				});
+
+				$('.clear-all-list').on('click', function(e){
+					e.preventDefault();
+					$('.multi-select').rekaf('reset');
 				});
 
 				$('.single-select').on('rekaf.selected', function(e, value){

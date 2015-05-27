@@ -93,6 +93,16 @@
 			$this.data('textList', textList);
 
 		},
+		resetList: function() {
+			var $this = this;
+			var text = '';
+
+			$this.find('.' + $this.set.selectedClass).removeClass($this.set.selectedClass);
+			$this.removeClass($this.set.selectedClass).find('span').first().removeClass($this.set.selectedClass).text($this.find('span').first().data('orig-text'));
+			$this.trigger('rekaf.unselected', [text]);
+			$this.data('textList', []);
+			priv.closeList.apply($this);
+		},
 		enableEvents: function() {
 			var $this = this;
 
@@ -105,13 +115,7 @@
 			});
 
 			$this.on('rekaf.resetSelect', function() {
-				var text = '';
-
-				$this.find('.' + $this.set.selectedClass).removeClass($this.set.selectedClass);
-				$this.removeClass($this.set.selectedClass).find('span').first().removeClass($this.set.selectedClass).text($this.find('span').first().data('orig-text'));
-				$this.trigger('rekaf.unselected', [text]);
-				$this.data('textList', []);
-				priv.closeList.apply($this);
+				priv.resetList.apply($this);
 			});
 
 			$this.on('click', 'li', function(e) {
@@ -128,7 +132,7 @@
 
 				if($this.set.multiselect === true) {
 					
-					if($li.hasClass('clear-select')) {
+					if($li.hasClass('clear-select') || $li.find('.remove').length > 0) {
 						$this.find('.' + $this.set.selectedClass).removeClass($this.set.selectedClass);
 						textList = [];
 						text = '';
@@ -251,6 +255,19 @@
 				$this.set = $.extend({}, init, objectData);
 
 				priv.updateList.apply($this);
+
+			});
+		},
+		reset: function(options) {
+			var init = $.extend({}, defaultOpts, options);
+
+			return this.each(function() {
+				var $this = $(this);
+				var objectData = $this.data();
+
+				$this.set = $.extend({}, init, objectData);
+
+				priv.resetList.apply($this);
 
 			});
 		}
