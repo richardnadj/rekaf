@@ -33,13 +33,17 @@
 			var $this = this;
 
 			$this.addClass('rekaf-opened').css('z-index', ($this.set.zIndex + 2)).find('ul').show();
-			$('#rekaf-screen').show();
+			if($this.set.useScreen) {
+				$('#rekaf-screen').show();
+			}
 		},
 		closeList: function() {
 			var $this = this;
 
 			$('.rekaf-opened').removeClass('rekaf-opened').css('z-index', $this.set.zIndex).find('ul').hide();
-			$('#rekaf-screen').hide();
+			if($this.set.useScreen) {
+				$('#rekaf-screen').hide();
+			}
 		},
 		updateList: function() {
 			var $this = this;
@@ -105,6 +109,36 @@
 		},
 		enableEvents: function() {
 			var $this = this;
+			var touchStart = null;
+			var touchClick = null;
+			var winTouches = {
+				move: false
+			};
+
+			touchClick = function() {
+				if(winTouches.moved) return false;
+				return (Math.abs(Math.abs(winTouches.startX) - Math.abs(winTouches.endX))) < 50 && (Math.abs(Math.abs(winTouches.startY) - Math.abs(winTouches.endY))) < 50;
+			};
+
+			//logging all touches on screen.
+			$(window).on({
+				touchstart: function(e) {
+					$this.set.touch = true;
+					winTouches.startX = e.originalEvent.targetTouches[0].clientX;
+					winTouches.startY = e.originalEvent.targetTouches[0].clientY;
+					winTouches.endX = e.originalEvent.targetTouches[0].clientX;
+					winTouches.endY = e.originalEvent.targetTouches[0].clientY;
+					winTouches.moved = false;
+				},
+				touchmove: function(e) {
+					winTouches.endX = e.originalEvent.targetTouches[0].clientX;
+					winTouches.endY = e.originalEvent.targetTouches[0].clientY;
+					if(!touchClick()) {
+						//You have moved away but you might move back.
+						winTouches.moved = true;
+					}
+				}
+			});
 
 			$this.on('click', 'span', function() {
 				if(!$this.hasClass('rekaf-opened')) {
@@ -118,7 +152,9 @@
 				priv.resetList.apply($this);
 			});
 
-			$this.on('click', 'li', function(e) {
+			$this.on('click touchend', 'li', function(e) {
+				//If touch enabled and touch is not a click return
+				if($this.set.touch === true && touchClick() === false) return;
 				var $li = $(this);
 				var textList = $this.data('textList') || [];
 				var isSelected = $li.hasClass($this.set.selectedClass);
@@ -185,6 +221,19 @@
 				priv.closeList.apply($this);
 			});
 
+			if(!$this.set.useScreen) {				
+				$(document).on('click touchend', function(e) {
+					//If list is opened and interaction is outside of the list.
+					if($this.hasClass('rekaf-opened') && $(e.target).closest('.fake-select').length === 0) {
+						//If touch enabled and touch is not a click return
+						if($this.set.touch === true && touchClick() === false) return;
+						//hijack all clicks that aren't in rekaf menu.
+						e.preventDefault();
+						priv.closeList.apply($this);
+					}
+				});
+			}
+
 		}
 	};
 
@@ -204,7 +253,7 @@
 			}
 
 			//Create a screen
-			if($('#rekaf-screen').length === 0) $('body').prepend('<div id="rekaf-screen" style="position: fixed; top: 0; left: 0; ' + bgColor + 'width: 100%; height: 2000px; z-index: ' + (init.zIndex + 1) + '; display: none;"></div>');
+			if($('#rekaf-screen').length === 0 && init.useScreen) $('body').prepend('<div id="rekaf-screen" style="position: fixed; top: 0; left: 0; ' + bgColor + 'width: 100%; height: 2000px; z-index: ' + (init.zIndex + 1) + '; display: none;"></div>');
 
 			return this.each(function() {
 				var $this = $(this),
@@ -280,6 +329,8 @@
 	var defaultOpts = {
 		zIndex: 1500,
 		mulitselect: false,
+		useScreen: true,
+		touch: false,
 		clickRemoveSelected: false,
 		disabledClass: 'disabled',
 		selectedClass: 'selected',
@@ -300,7 +351,7 @@
 			//If method is an "object" (can also be an array) or no arguments passed to the function.
 			return methods.init.apply(this, arguments);
 		} else {
-			$.error('Method ' +  method + ' does not exist on jQuery.rekaf');
+			$.error('Method ' + method + ' does not exist on jQuery.rekaf');
 		}
 
 	};

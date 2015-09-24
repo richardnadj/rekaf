@@ -92,6 +92,16 @@ If events should be prevented or whether you would like the anchor to take effec
 	$(selector).rekaf({preventLinks: true});
 
 
+#### useScreen ####
+
+*Default* `true`   
+*Expects* `boolean`
+
+This is a superior version of using a screen to detect when to close the select. This works out if you have clicked something that is not the fake list and closes based on that result. It requires that the list has `fake-select` as a parent to the item you are clicking.
+
+	$(selector).rekaf({useScreen: false});
+
+
 #### debug ####
 
 *Default* `false`   
@@ -149,6 +159,9 @@ Clear all lists that have previously selected items.
 
 
 ### Changelog ###
+
+**Version 0.8.0**   
+Added a new property so that you don't have to use a screen to listen for when to close the list. Added touch listeners.
 
 **Version 0.7.4**   
 Added a new method to trigger selects to clear/reset. Also listening to remove class in multiselect list to reset dropdown.

@@ -1,6 +1,6 @@
 {
   "name": "ys-rekaf",
-  "version": "0.7.4",
+  "version": "0.8.0",
   "description": "Rekaf a fake select element",
   "main": "dev/index.html",
   "homepage": "http://youngskilled.com",
