@@ -32,6 +32,7 @@
 		openList: function() {
 			var $this = this;
 
+			$this.trigger('rekaf.opened');
 			$this.addClass('rekaf-opened').css('z-index', ($this.set.zIndex + 2)).find('ul').show();
 			if($this.set.useScreen) {
 				$('#rekaf-screen').show();
@@ -40,6 +41,7 @@
 		closeList: function() {
 			var $this = this;
 
+			$this.trigger('rekaf.closed');
 			$('.rekaf-opened').removeClass('rekaf-opened').css('z-index', $this.set.zIndex).find('ul').hide();
 			if($this.set.useScreen) {
 				$('#rekaf-screen').hide();
@@ -152,9 +154,7 @@
 				priv.resetList.apply($this);
 			});
 
-			$this.on('click touchend', 'li', function(e) {
-				//If touch enabled and touch is not a click return
-				if($this.set.touch === true && touchClick() === false) return;
+			$this.on('click', 'li', function(e) {
 				var $li = $(this);
 				var textList = $this.data('textList') || [];
 				var isSelected = $li.hasClass($this.set.selectedClass);

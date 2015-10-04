@@ -160,6 +160,9 @@ Clear all lists that have previously selected items.
 
 ### Changelog ###
 
+**Version 0.8.1**   
+Fixed event rekaf.opened. Was not previously firing.
+
 **Version 0.8.0**   
 Added a new property so that you don't have to use a screen to listen for when to close the list. Added touch listeners.
 
