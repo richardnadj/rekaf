@@ -32,11 +32,16 @@
 		openList: function() {
 			var $this = this;
 
-			$this.trigger('rekaf.opened');
-			$this.addClass('rekaf-opened').css('z-index', ($this.set.zIndex + 2)).find('ul').show();
 			if($this.set.useScreen) {
 				$('#rekaf-screen').show();
+			} else {
+				if($('.rekaf-opened').length > 0) {
+					$this.trigger('rekaf.closed');
+					$('.rekaf-opened').removeClass('rekaf-opened').css('z-index', $this.set.zIndex).find('ul').hide();
+				}
 			}
+			$this.addClass('rekaf-opened').css('z-index', ($this.set.zIndex + 2)).find('ul').show();
+			$this.trigger('rekaf.opened');
 		},
 		closeList: function() {
 			var $this = this;

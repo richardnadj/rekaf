@@ -160,6 +160,9 @@ Clear all lists that have previously selected items.
 
 ### Changelog ###
 
+**Version 0.8.2**   
+Made rekaf with no screen better. Closing other already open lists if trying to open a new.
+
 **Version 0.8.1**   
 Fixed event rekaf.opened. Was not previously firing.
 
