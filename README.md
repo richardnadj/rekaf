@@ -84,7 +84,7 @@ If the user clicks on the same value that is already selected the selection will
 
 #### preventLinks ####
 
-*Default* `false`   
+*Default* `true`   
 *Expects* `boolean`
 
 If events should be prevented or whether you would like the anchor to take effect.
