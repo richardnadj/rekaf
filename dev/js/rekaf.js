@@ -272,10 +272,12 @@
 				}
 
 				//Make sure that the selects are of a higher z-index than the screen.
-				$this.css({
-					'z-index': $this.set.zIndex,
-					'position': 'relative'
-				});
+				if($this.set.preventInlineStyles === false) {
+					$this.css({
+						'z-index': $this.set.zIndex,
+						'position': 'relative'
+					});
+				}
 
 				if(!$this.set.rekafIntiated) {
 					priv.init.apply($this);
@@ -343,6 +345,7 @@
 		multiselectTitleLimitText: ' items selected',
 		delimiter: ', ',
 		preventLinks: true,
+		preventInlineStyles: false,
 		debug: false
 	};
 

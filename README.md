@@ -92,6 +92,16 @@ If events should be prevented or whether you would like the anchor to take effec
 	$(selector).rekaf({preventLinks: true});
 
 
+#### preventInlineStyles ####
+
+*Default* `false`   
+*Expects* `boolean`
+
+Only applies to static styles on surrounding div and not showing hiding list (`z-index` and `position`).
+
+	$(selector).rekaf({preventInlineStyles: false});
+
+
 #### useScreen ####
 
 *Default* `true`   
@@ -159,6 +169,9 @@ Clear all lists that have previously selected items.
 
 
 ### Changelog ###
+
+**Version 0.8.3/0.8.4**   
+Added a new preference to stop `position: relative;` being added.
 
 **Version 0.8.2**   
 Made rekaf with no screen better. Closing other already open lists if trying to open a new.
