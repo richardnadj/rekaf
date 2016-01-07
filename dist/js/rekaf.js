@@ -10,11 +10,13 @@
 		checkInputs: function() {
 			var $this = this;
 			var $inputChecked = $this.find('input:checked');
+			var $anchorSelected = $this.find('li.' + $this.set.selectedClass).filter(':first');
 			var $inputDisabled = $this.find('input:disabled');
-			var $li = $inputChecked.closest('li');
 			var text = '';
+			var $li;
 
-			if($inputChecked.length > 0) {
+			if($inputChecked.length > 0 || $anchorSelected.length > 0) {
+				$li = $inputChecked.length > 0 ? $inputChecked.closest('li') : $anchorSelected;
 				text = $li.text();
 				if(text === '' && $li.attr('title') !== undefined) text = $li.attr('title');
 				$this.find('.' + $this.set.selectedClass).removeClass($this.set.selectedClass);

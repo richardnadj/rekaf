@@ -170,6 +170,9 @@ Clear all lists that have previously selected items.
 
 ### Changelog ###
 
+**Version 0.8.5**   
+Adding selected to a li prior to rendering now uses that as the default value.
+
 **Version 0.8.3/0.8.4**   
 Added a new preference to stop `position: relative;` being added.
 
