@@ -138,7 +138,7 @@
 					preventClose: true,
 				})
 
-				$('.multi-select').rekaf({
+				$('.rekaf--multiSelect').rekaf({
 					multiselect: true,
 					multiselectTitleLimit: 1,
 					useScreen: false
@@ -151,7 +151,7 @@
 
 				$('.clear-all-list').on('click', function(e){
 					e.preventDefault();
-					$('.multi-select').rekaf('reset');
+					$('.rekaf--multiSelect').rekaf('reset');
 				});
 
 				$('.single-select').on('rekaf.selected', function(e, value){

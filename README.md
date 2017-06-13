@@ -190,6 +190,9 @@ Clear all lists that have previously selected items.
 
 ### Changelog ###
 
+**Version 1.1.1**   
+Stopped clicking on title from propagating to closing function - `useScreen = true`.
+
 **Version 1.1.0**   
 Updated classes and ids. Added them to options to allow overiding. Added a new function to prevent select from closing.
 

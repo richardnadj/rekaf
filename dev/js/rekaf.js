@@ -138,7 +138,9 @@
 				}
 			});
 
-			$this.on('click', '.' + $this.set.titleClass, function() {
+			$this.on('click', '.' + $this.set.titleClass, function(e) {
+				e.stopPropagation();
+
 				if (!$this.hasClass('rekaf--opened')) {
 					priv.openList.apply($this);
 				} else {
