@@ -21,9 +21,9 @@
 				<div class="function">
 					<a class="btn open-list" href="#">Open list below</a><span class="trig-selected triggered">Selected</span><span class="trig-unselected triggered">Unselected</span>
 				</div>
-				<div class="fake-select single-select toggle-select">
-					<span class="title">Choose Designer</span>
-					<ul class="fake-select-list">
+				<div class="rekaf single-select toggle-select">
+					<span class="rekaf-title">Choose Designer</span>
+					<ul class="rekaf-list">
 						<li><a href="#">Choose Designer</a></li>
 						<li><a href="#">Alexander McQueen</a></li>
 						<li><a href="#">Christian Louboutin</a></li>
@@ -38,9 +38,9 @@
 				<div class="function">
 					<a class="btn open-list" href="#">Open list below</a><a class="btn select-from-list" href="#">Select some in list</a><span class="trig-selected triggered">Selected</span><span class="trig-unselected triggered">Unselected</span>
 				</div>
-				<div class="fake-select single-select input-select">
-					<span class="title">Choose Designer</span>
-					<ul class="fake-select-list">
+				<div class="rekaf single-select input-select">
+					<span class="rekaf-title">Choose Designer</span>
+					<ul class="rekaf-list">
 						<li><label for="choose-designer"><input id="choose-designer" value="0" type="radio" name="designer">Choose Designer</label></li>
 						<li><label for="alexander-mcqueen"><input id="alexander-mcqueen" disabled="disabled" value="alexander-mcqueen" type="radio" name="designer">Alexander McQueen</label></li>
 						<li><label for="christian-louboutin"><input id="christian-louboutin" checked="checked" value="christian-louboutin" type="radio" name="designer">Christian Louboutin</label></li>
@@ -51,9 +51,9 @@
 			</section>
 			<section>
 				<h3>Using html</h3>
-				<div class="fake-select html-select fake-select--html">
-					<span class="title"><span>Choose Color</span></span>
-					<ul class="fake-select-list">
+				<div class="rekaf html-select rekaf--html">
+					<span class="rekaf-title"><span>Choose Color</span></span>
+					<ul class="rekaf-list">
 						<li><a href="#"><span><span class="swatch" style="background-color: #ecd078;"></span>Citron</span></a></li>
 						<li><a href="#"><span><span class="swatch" style="background-color: #d95b43;"></span>Orange</span></a></li>
 						<li><a href="#"><span><span class="swatch" style="background-color: #c02942;"></span>Cherry</span></a></li>
@@ -64,9 +64,10 @@
 			</section>
 			<section>
 				<h3>Multiselect Using html</h3>
-				<div class="fake-select html-multiselect fake-select--html">
-					<span class="title"><span>Choose Color</span></span>
-					<ul class="fake-select-list">
+				<p>Prevent close</p>
+				<div class="rekaf html-multiselect rekaf--html">
+					<span class="rekaf-title"><span>Choose Color</span></span>
+					<ul class="rekaf-list">
 						<li><a href="#"><span><span class="swatch" style="background-color: #ecd078;"></span>Citron</span></a></li>
 						<li><a href="#"><span><span class="swatch" style="background-color: #d95b43;"></span>Orange</span></a></li>
 						<li><a href="#"><span><span class="swatch" style="background-color: #c02942;"></span>Cherry</span></a></li>
@@ -80,9 +81,9 @@
 				<div class="function">
 					<a class="btn open-list" href="#">Open list below</a><a class="btn select-from-list" href="#">Select some in list</a>
 				</div>
-				<div class="fake-select multi-select">
-					<span class="title">Choose Designer</span>
-					<ul class="fake-select-list">
+				<div class="rekaf rekaf--multiSelect">
+					<span class="rekaf-title">Choose Designer</span>
+					<ul class="rekaf-list">
 						<li class="clear-select"><a href="#">Remove All</a></li>
 						<li><a href="#">Alexander McQueen</a></li>
 						<li><a href="#">Christian Louboutin</a></li>
@@ -96,18 +97,18 @@
 				<div class="function">
 					<a class="btn clear-all-list" href="#">Clear all selects</a>
 				</div>
-				<div class="fake-select multi-select">
-					<span class="title">Choose Designer</span>
-					<ul class="fake-select-list">
+				<div class="rekaf rekaf--multiSelect">
+					<span class="rekaf-title">Choose Designer</span>
+					<ul class="rekaf-list">
 						<li><a class="remove" href="#">Choose Designer</a></li>
 						<li><a href="#">Alexander McQueen</a></li>
 						<li><a href="#">Christian Louboutin</a></li>
 						<li><a href="#">Jimmy Choo</a></li>
 						<li><a href="#">Manolo Blahnik</a></li>
 					</ul>
-				</div><div class="fake-select multi-select">
-					<span class="title">Choose Color</span>
-					<ul class="fake-select-list">
+				</div><div class="rekaf rekaf--multiSelect">
+					<span class="rekaf-title">Choose Color</span>
+					<ul class="rekaf-list">
 						<li><a class="remove" href="#">Choose Color</a></li>
 						<li><a href="#">Black</a></li>
 						<li><a href="#">Blue</a></li>
@@ -133,7 +134,8 @@
 
 				$('.html-multiselect').rekaf({
 					useHTML: true,
-					multiselect: true
+					multiselect: true,
+					preventClose: true,
 				})
 
 				$('.multi-select').rekaf({
@@ -144,7 +146,7 @@
 
 				$('.open-list').on('click', function(e){
 					e.preventDefault();
-					$(this).closest('section').find('.fake-select').rekaf('open');
+					$(this).closest('section').find('.rekaf').rekaf('open');
 				});
 
 				$('.clear-all-list').on('click', function(e){
@@ -170,7 +172,7 @@
 						whichNum = Math.floor(Math.random()*4);
 					console.log('set number ' + whichNum + ' on multiselect');
 					$cont.find('li:eq(' + whichNum + ')').toggleClass('selected');
-					$cont.find('.fake-select').rekaf('update');
+					$cont.find('.rekaf').rekaf('update');
 				});
 
 				//Hide/display grid

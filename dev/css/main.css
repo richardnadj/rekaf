@@ -783,18 +783,12 @@ section {
   .signature svg {
     padding-top: 30px; }
 
-.multi-select {
-  width: 23.07692%;
-  display: inline-block;
-  vertical-align: top;
-  margin-right: 20px; }
-
-.fake-select {
+.rekaf {
   height: 33px;
   line-height: 33px;
   background-color: #fff;
   border: 1px solid #ccc; }
-  .fake-select:after {
+  .rekaf:after {
     content: "";
     border: 10px solid transparent;
     border-top-color: #333;
@@ -803,55 +797,65 @@ section {
     right: 10px;
     top: 50%;
     margin-top: -5px; }
-  .fake-select > .title {
+  .rekaf-title {
     padding: 0 10px;
     position: relative;
     z-index: 11; }
-  .fake-select ul {
+  .rekaf ul {
     background-color: #fff;
     width: 100%;
     border: 1px solid #ccc;
     padding: 5px 0;
     left: -1px;
     top: 33px; }
-  .fake-select li {
+  .rekaf li {
     padding: 0 10px; }
-    .fake-select li.selected a {
+    .rekaf li.selected a {
       padding-left: 20px;
       position: relative; }
-      .fake-select li.selected a:before {
+      .rekaf li.selected a:before {
         content: "*";
         position: absolute;
         left: 10px; }
-  .fake-select a {
+  .rekaf a {
     display: block; }
-    .fake-select a:hover {
+    .rekaf a:hover {
       color: #000; }
-  .fake-select label {
+  .rekaf label {
     display: block; }
-  .fake-select input[type=radio] {
+  .rekaf input[type=radio] {
     margin-right: 10px; }
-  .fake-select .disabled {
+  .rekaf .disabled {
     opacity: 0.3;
     cursor: default; }
-  .fake-select .swatch {
+  .rekaf .swatch {
     width: 20px;
     height: 20px;
     display: inline-block;
     vertical-align: middle;
     border-radius: 50%;
     margin-right: 10px; }
-  .fake-select--html li.selected a:before {
+  .rekaf--html li.selected a:before {
     display: none; }
+  .rekaf--multiSelect {
+    width: 23.07692%;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 20px; }
 
-.fake-select {
+.rekaf {
   position: relative;
   cursor: pointer;
   text-align: left;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
-  .fake-select > .title {
+  .rekaf a, .rekaf label {
+    display: block; }
+  .rekaf .disabled {
+    opacity: 0.3;
+    cursor: default; }
+  .rekaf-title {
     display: block;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -860,26 +864,18 @@ section {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none; }
-  .fake-select a, .fake-select label {
+  .rekaf-list {
+    position: absolute;
+    display: none;
+    left: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    width: 100%; }
+  .rekaf--multiSelect .rekaf-title {
+    white-space: normal; }
+  .no-js .rekaf:hover .rekaf-list {
     display: block; }
-  .fake-select .disabled {
-    opacity: 0.3;
-    cursor: default; }
-
-.multi-select > .title {
-  white-space: normal; }
-
-.fake-select-list {
-  position: absolute;
-  display: none;
-  left: 0;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  background-color: white;
-  width: 100%; }
-
-.no-js .fake-select:hover .fake-select-list {
-  display: block; }
 
 /*# sourceMappingURL=main.css.map */

@@ -102,6 +102,16 @@ Only applies to static styles on surrounding div and not showing hiding list (`z
 	$(selector).rekaf({preventInlineStyles: false});
 
 
+#### preventClose ####
+
+*Default* `false`   
+*Expects* `boolean`
+
+Stop select from automatically closing after every choice.
+
+	$(selector).rekaf({preventClose: false});
+
+
 #### useScreen ####
 
 *Default* `true`   
@@ -179,6 +189,9 @@ Clear all lists that have previously selected items.
 
 
 ### Changelog ###
+
+**Version 1.1.0**   
+Updated classes and ids. Added them to options to allow overiding. Added a new function to prevent select from closing.
 
 **Version 1.0.0**   
 Refactored rekaf to use even HTML in lists. Added module support and added to NPM. No longer required to have data-orig-text. Initial data in select used instead.

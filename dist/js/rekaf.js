@@ -10,7 +10,7 @@
 		init: function() {
 			var $this = this;
 
-			$this.set.initialContents = $this.set.useHTML ? $this.find('span').first().children().clone() : $this.find('span').first().text();
+			$this.set.initialContents = $this.set.useHTML ? $this.find('.' + $this.set.titleClass).children().clone() : $this.find('.' + $this.set.titleClass).text();
 			priv.checkDisabledInputs.apply($this);
 			priv.updateList.apply($this);
 			priv.enableEvents.apply($this);
@@ -29,22 +29,22 @@
 			var $this = this;
 
 			if ($this.set.useScreen) {
-				$('#rekaf-screen').show();
-			} else if ($('.rekaf-opened').length > 0) {
+				$('#' + $this.set.screenID).show();
+			} else if ($('.rekaf--opened').length > 0) {
 				$this.trigger('rekaf.closed');
-				$('.rekaf-opened').removeClass('rekaf-opened').css('z-index', $this.set.zIndex).find('ul').hide();
+				$('.rekaf--opened').removeClass('rekaf--opened').css('z-index', $this.set.zIndex).find('ul').hide();
 			}
 
-			$this.addClass('rekaf-opened').css('z-index', ($this.set.zIndex + 2)).find('ul').show();
+			$this.addClass('rekaf--opened').css('z-index', ($this.set.zIndex + 2)).find('ul').show();
 			$this.trigger('rekaf.opened');
 		},
 		closeList: function() {
 			var $this = this;
 
 			$this.trigger('rekaf.closed');
-			$('.rekaf-opened').removeClass('rekaf-opened').css('z-index', $this.set.zIndex).find('ul').hide();
+			$('.rekaf--opened').removeClass('rekaf--opened').css('z-index', $this.set.zIndex).find('ul').hide();
 			if ($this.set.useScreen) {
-				$('#rekaf-screen').hide();
+				$('#' + $this.set.screenID).hide();
 			}
 		},
 		updateList: function() {
@@ -74,23 +74,23 @@
 
 			if (contentList.length > 0) {
 				if ($this.set.useHTML) {
-					$this.find('span').first().empty();
+					$this.find('.' + $this.set.titleClass).empty();
 					for (var i = 0; i < contentList.length; i++) {
-						$this.find('span').first().append(contentList[i]);
+						$this.find('.' + $this.set.titleClass).append(contentList[i]);
 					}
 				} else {
 					innerText = (contentList.length > $this.set.multiselectTitleLimit) ? contentList.length + $this.set.multiselectTitleLimitText : contentList.join($this.set.delimiter);
 					if (!$this.set.multiselect) innerText = contentList[0];
-					$this.find('span').first().text(innerText);
+					$this.find('.' + $this.set.titleClass).text(innerText);
 				}
 
 				$this.trigger('rekaf.selected', [contentList]);
 			} else {
 				// Nothing selected return to default settings.
 				if ($this.set.useHTML) {
-					$this.find('span').first().empty().append($this.set.initialContents);
+					$this.find('.' + $this.set.titleClass).empty().append($this.set.initialContents);
 				} else {
-					$this.find('span').first().text($this.set.initialContents);
+					$this.find('.' + $this.set.titleClass).text($this.set.initialContents);
 				}
 
 				$this.trigger('rekaf.unselected', []);
@@ -100,7 +100,7 @@
 			var $this = this;
 
 			$this.find('.' + $this.set.selectedClass).removeClass($this.set.selectedClass);
-			$this.removeClass($this.set.selectedClass).find('span').first().text($this.set.initialContents);
+			$this.removeClass($this.set.selectedClass).find('.' + $this.set.titleClass).text($this.set.initialContents);
 			$this.trigger('rekaf.unselected', []);
 			priv.updateList.apply($this);
 			priv.closeList.apply($this);
@@ -138,8 +138,8 @@
 				}
 			});
 
-			$this.on('click', 'span', function() {
-				if (!$this.hasClass('rekaf-opened')) {
+			$this.on('click', '.' + $this.set.titleClass, function() {
+				if (!$this.hasClass('rekaf--opened')) {
 					priv.openList.apply($this);
 				} else {
 					priv.closeList.apply($this);
@@ -176,17 +176,19 @@
 				}
 
 				priv.updateList.apply($this);
-				priv.closeList.apply($this);
+				if (!$this.set.preventClose) {
+					priv.closeList.apply($this);
+				}
 			});
 
-			$('#rekaf-screen').on('click', function() {
+			$('#' + $this.set.screenID).on('click', function() {
 				priv.closeList.apply($this);
 			});
 
 			if (!$this.set.useScreen) {				
 				$(document).on('click touchend', function(e) {
 					//If list is opened and interaction is outside of the list.
-					if ($this.hasClass('rekaf-opened') && $(e.target).closest('.fake-select').length === 0) {
+					if ($this.hasClass('rekaf--opened') && $(e.target).closest('.fake-select').length === 0) {
 						//If touch enabled and touch is not a click return
 						if ($this.set.touch === true && touchClick() === false) return;
 						//hijack all clicks that aren't in rekaf menu.
@@ -215,7 +217,7 @@
 			}
 
 			//Create a screen
-			if ($('#rekaf-screen').length === 0 && init.useScreen) $('body').prepend('<div id="rekaf-screen" style="position: fixed; top: 0; left: 0; ' + bgColor + 'width: 100%; height: 2000px; z-index: ' + (init.zIndex + 1) + '; display: none;"></div>');
+			if ($('#' + this.init.screenID).length === 0 && init.useScreen) $('body').prepend('<div id="' + this.init.screenID + '" style="position: fixed; top: 0; left: 0; ' + bgColor + 'width: 100%; height: 2000px; z-index: ' + (init.zIndex + 1) + '; display: none;"></div>');
 
 			return this.each(function() {
 				var $this = $(this),
@@ -298,6 +300,8 @@
 		touch: false,
 		clickRemoveSelected: false,
 		initialContents: '',
+		screenID: 'rekafScreen',
+		titleClass: 'rekaf-title',
 		disabledClass: 'disabled',
 		selectedClass: 'selected',
 		multiselectTitleLimit: 4,
@@ -305,6 +309,7 @@
 		delimiter: ', ',
 		preventLinks: true,
 		preventInlineStyles: false,
+		preventClose: false,
 		debug: false
 	};
 

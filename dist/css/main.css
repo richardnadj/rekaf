@@ -60,22 +60,22 @@ section{margin-top:50px}
 .ingress{width:65.81197%}
 .signature{width:48.71795%;margin:250px auto 0;text-align:center;display:block;border-top:1px solid #ccc}
 .signature svg{padding-top:30px}
-.multi-select{width:23.07692%;display:inline-block;vertical-align:top;margin-right:20px}
-.fake-select{height:33px;line-height:33px;background-color:#fff;border:1px solid #ccc}
-.fake-select:after{content:"";border:10px solid transparent;border-top-color:#333;position:absolute;z-index:10;right:10px;top:50%;margin-top:-5px}
-.fake-select>.title{padding:0 10px;position:relative;z-index:11}
-.fake-select ul{background-color:#fff;width:100%;border:1px solid #ccc;padding:5px 0;left:-1px;top:33px}
-.fake-select li{padding:0 10px}
-.fake-select li.selected a{padding-left:20px;position:relative}
-.fake-select li.selected a:before{content:"*";position:absolute;left:10px}
-.fake-select a:hover{color:#000}
-.fake-select input[type=radio]{margin-right:10px}
-.fake-select .swatch{width:20px;height:20px;display:inline-block;vertical-align:middle;border-radius:50%;margin-right:10px}
-.fake-select--html li.selected a:before{display:none}
-.fake-select{position:relative;cursor:pointer;text-align:left;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
-.fake-select>.title{display:block;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
-.fake-select a,.fake-select label{display:block}
-.fake-select .disabled{opacity:.3;cursor:default}
-.multi-select>.title{white-space:normal}
-.fake-select-list{position:absolute;display:none;left:0;list-style:none;margin:0;padding:0;background-color:#fff;width:100%}
-.no-js .fake-select:hover .fake-select-list{display:block}
+.rekaf{height:33px;line-height:33px;background-color:#fff;border:1px solid #ccc}
+.rekaf:after{content:"";border:10px solid transparent;border-top-color:#333;position:absolute;z-index:10;right:10px;top:50%;margin-top:-5px}
+.rekaf-title{padding:0 10px;position:relative;z-index:11}
+.rekaf ul{background-color:#fff;width:100%;border:1px solid #ccc;padding:5px 0;left:-1px;top:33px}
+.rekaf li{padding:0 10px}
+.rekaf li.selected a{padding-left:20px;position:relative}
+.rekaf li.selected a:before{content:"*";position:absolute;left:10px}
+.rekaf a:hover{color:#000}
+.rekaf input[type=radio]{margin-right:10px}
+.rekaf .swatch{width:20px;height:20px;display:inline-block;vertical-align:middle;border-radius:50%;margin-right:10px}
+.rekaf--html li.selected a:before{display:none}
+.rekaf--multiSelect{width:23.07692%;display:inline-block;vertical-align:top;margin-right:20px}
+.rekaf{position:relative;cursor:pointer;text-align:left;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
+.rekaf a,.rekaf label{display:block}
+.rekaf .disabled{opacity:.3;cursor:default}
+.rekaf-title{display:block;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+.rekaf-list{position:absolute;display:none;left:0;list-style:none;margin:0;padding:0;background-color:#fff;width:100%}
+.rekaf--multiSelect .rekaf-title{white-space:normal}
+.no-js .rekaf:hover .rekaf-list{display:block}
