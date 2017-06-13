@@ -1,11 +1,11 @@
 {
   "name": "ys-rekaf",
-  "version": "0.8.5",
+  "version": "1.0.0",
   "main": "dist/rekaf.js",
   "authors": [
-    "Richard Herries <richard@youngskilled.com>"
+    "Richard Herries <richard@coalescecreate.com>"
   ],
-  "description": "Rekaf a fake select element",
+  "description": "Rekaf, a fake select element",
   "license": "MIT",
   "ignore": [
     "**/.*",

@@ -52,7 +52,7 @@ a{color:#333;text-decoration:none}
 img{display:block;max-width:100%;height:auto}
 iframe{width:100%}
 label{cursor:pointer}
-.main-cont{width:1170px;margin:0 auto;max-width:92%}
+.main-cont{width:1170px;margin:0 auto 200px;max-width:92%}
 .btn{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;border:1px solid #333;margin:10px 10px 10px 0;background-color:transparent;color:#333;display:inline-block;padding:0 10px;height:30px;line-height:28px}
 .btn:hover{background-color:#333;color:#F9FEF9}
 .triggered{display:none;padding:0 10px}
@@ -70,6 +70,8 @@ section{margin-top:50px}
 .fake-select li.selected a:before{content:"*";position:absolute;left:10px}
 .fake-select a:hover{color:#000}
 .fake-select input[type=radio]{margin-right:10px}
+.fake-select .swatch{width:20px;height:20px;display:inline-block;vertical-align:middle;border-radius:50%;margin-right:10px}
+.fake-select--html li.selected a:before{display:none}
 .fake-select{position:relative;cursor:pointer;text-align:left;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
 .fake-select>.title{display:block;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
 .fake-select a,.fake-select label{display:block}

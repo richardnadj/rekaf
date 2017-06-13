@@ -17,7 +17,7 @@ img { display: block; max-width: 100%; height: auto; }
 iframe { width: 100%; }
 label { cursor: pointer; }
 
-.main-cont { width: $pageWidth; margin: 0 auto; max-width: $maxPageWidth; }
+.main-cont { width: $pageWidth; margin: 0 auto 200px; max-width: $maxPageWidth; }
 .btn { box-sizing: border-box; border: 1px solid #333; margin: 10px 10px 10px 0; background-color: transparent; color: #333; display: inline-block; padding: 0 10px; height: 30px; line-height: 28px;
 	&:hover { background-color: #333; color: #F9FEF9; } }
 .triggered { display: none; padding: 0 10px; }
@@ -34,9 +34,17 @@ section { margin-top: 50px; }
 	ul { background-color: #fff; width: 100%; border: 1px solid $lgrey; padding: 5px 0; left: -1px; top: 33px; }
 	li { padding: 0 10px;
 		&.selected a { padding-left: 20px; position: relative;
-			&:before { content: "*"; position: absolute; left: 10px; } } }
+			&:before { content: "*"; position: absolute; left: 10px; }
+		}
+	}
 	a { display: block;
-		&:hover { color: #000; } }
+		&:hover { color: #000; } 
+	}
 	label { display: block; }
 	input[type=radio] { margin-right: 10px; }
-	.disabled { opacity: 0.3; cursor: default; } }
+	.disabled { opacity: 0.3; cursor: default; } 
+	.swatch { width: 20px; height: 20px; display: inline-block; vertical-align: middle; border-radius: 50%; margin-right: 10px; }
+	&--html {
+		li.selected a:before { display: none; }
+	}
+}

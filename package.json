@@ -1,12 +1,19 @@
 {
-  "name": "ys-rekaf",
-  "version": "0.8.5",
+  "name": "rekaf",
+  "version": "1.0.0",
   "description": "Rekaf a fake select element",
-  "main": "dev/index.html",
-  "homepage": "http://youngskilled.com",
-  "author": "richard@youngskilled.com Young/Skilled",
+  "main": "dist/js/rekaf.min.js",
+  "stlye": "dist/js/rekaf.min.css",
+  "homepage": "http://coalescecreate.com",
+  "author": "richard@coalescecreate.com - Coalesce Create",
   "license": "MIT",
-  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:coalescecreate/rekaf.git"
+  },
+  "dependencies": {
+    "jquery": ">=1.8"
+  },
   "devDependencies": {
     "browser-sync": "^0.9.1",
     "gulp": "^3.8.10",

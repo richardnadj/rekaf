@@ -1,0 +1,37 @@
+.fake-select {
+  position: relative;
+  cursor: pointer;
+  text-align: left;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+  .fake-select > .title {
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; }
+  .fake-select a, .fake-select label {
+    display: block; }
+  .fake-select .disabled {
+    opacity: 0.3;
+    cursor: default; }
+
+.multi-select > .title {
+  white-space: normal; }
+
+.fake-select-list {
+  position: absolute;
+  display: none;
+  left: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  width: 100%; }
+
+.no-js .fake-select:hover .fake-select-list {
+  display: block; }

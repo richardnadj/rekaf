@@ -745,7 +745,7 @@ label {
 
 .main-cont {
   width: 1170px;
-  margin: 0 auto;
+  margin: 0 auto 200px;
   max-width: 92%; }
 
 .btn {
@@ -834,6 +834,15 @@ section {
   .fake-select .disabled {
     opacity: 0.3;
     cursor: default; }
+  .fake-select .swatch {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 50%;
+    margin-right: 10px; }
+  .fake-select--html li.selected a:before {
+    display: none; }
 
 .fake-select {
   position: relative;

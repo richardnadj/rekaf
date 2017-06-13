@@ -112,6 +112,16 @@ This is a superior version of using a screen to detect when to close the select.
 	$(selector).rekaf({useScreen: false});
 
 
+#### useHTML ####
+
+*Default* `false`   
+*Expects* `boolean`
+
+Copy HTML from selected item. Content must be wrapped within HTML. Adjacent textnodes are not copied.
+
+	$(selector).rekaf({useScreen: false});
+
+
 #### debug ####
 
 *Default* `false`   
@@ -169,6 +179,9 @@ Clear all lists that have previously selected items.
 
 
 ### Changelog ###
+
+**Version 1.0.0**   
+Refactored rekaf to use even HTML in lists. Added module support and added to NPM. No longer required to have data-orig-text. Initial data in select used instead.
 
 **Version 0.8.5**   
 Adding selected to a li prior to rendering now uses that as the default value.
