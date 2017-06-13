@@ -190,7 +190,7 @@
 			if (!$this.set.useScreen) {				
 				$(document).on('click touchend', function(e) {
 					//If list is opened and interaction is outside of the list.
-					if ($this.hasClass('rekaf--opened') && $(e.target).closest('.fake-select').length === 0) {
+					if ($this.hasClass('rekaf--opened') && $(e.target).closest('.rekaf--opened').length === 0) {
 						//If touch enabled and touch is not a click return
 						if ($this.set.touch === true && touchClick() === false) return;
 						//hijack all clicks that aren't in rekaf menu.

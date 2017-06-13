@@ -9,7 +9,7 @@ Initiate with `$(selector).rekaf({'some':'property'});`
 Invoke methods with `$(selector).rekaf('method', {'some':'property'});`   
 Example
 
-	$('.fake-select').rekaf({
+	$('.rekaf').rekaf({
 		debug: true,
 		zIndex: 2000
 	})
@@ -18,7 +18,7 @@ Example
 
 Following structure is required for selector to work. (Using Emmet tab complete for HTML)
 
-	div.fake-select>span.title[data-orig-text=]+ul.fake-select-list>li*3
+	div.rekaf>span.rekaf-title+ul.rekaf-list>li*3
 
 ### Properties ###
 
@@ -117,7 +117,7 @@ Stop select from automatically closing after every choice.
 *Default* `true`   
 *Expects* `boolean`
 
-This is a superior version of using a screen to detect when to close the select. This works out if you have clicked something that is not the fake list and closes based on that result. It requires that the list has `fake-select` as a parent to the item you are clicking.
+This is a superior version of using a screen to detect when to close the select. This works out if you have clicked something that is not the fake list and closes based on that result. It requires that the list has `rekaf--opened` as a parent to the item you are clicking.
 
 	$(selector).rekaf({useScreen: false});
 
@@ -189,6 +189,9 @@ Clear all lists that have previously selected items.
 
 
 ### Changelog ###
+
+**Version 1.1.2**   
+Fixed useScreen click listener.
 
 **Version 1.1.1**   
 Stopped clicking on title from propagating to closing function - `useScreen = true`.
