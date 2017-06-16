@@ -31,17 +31,17 @@
 			if ($this.set.useScreen) {
 				$('#' + $this.set.screenID).show();
 			} else if ($('.rekaf--opened').length > 0) {
-				$this.trigger('rekaf.closed');
+				$this.trigger('closed.rekaf');
 				$('.rekaf--opened').removeClass('rekaf--opened').css('z-index', $this.set.zIndex).find('ul').hide();
 			}
 
 			$this.addClass('rekaf--opened').css('z-index', ($this.set.zIndex + 2)).find('ul').show();
-			$this.trigger('rekaf.opened');
+			$this.trigger('opened.rekaf');
 		},
 		closeList: function() {
 			var $this = this;
 
-			$this.trigger('rekaf.closed');
+			$this.trigger('closed.rekaf');
 			$('.rekaf--opened').removeClass('rekaf--opened').css('z-index', $this.set.zIndex).find('ul').hide();
 			if ($this.set.useScreen) {
 				$('#' + $this.set.screenID).hide();
@@ -84,7 +84,7 @@
 					$this.find('.' + $this.set.titleClass).text(innerText);
 				}
 
-				$this.trigger('rekaf.selected', [contentList]);
+				$this.trigger('selected.rekaf', [contentList]);
 			} else {
 				// Nothing selected return to default settings.
 				if ($this.set.useHTML) {
@@ -93,7 +93,7 @@
 					$this.find('.' + $this.set.titleClass).text($this.set.initialContents);
 				}
 
-				$this.trigger('rekaf.unselected', []);
+				$this.trigger('unselected.rekaf', []);
 			}
 		},
 		resetList: function() {
@@ -101,7 +101,7 @@
 
 			$this.find('.' + $this.set.selectedClass).removeClass($this.set.selectedClass);
 			$this.removeClass($this.set.selectedClass).find('.' + $this.set.titleClass).text($this.set.initialContents);
-			$this.trigger('rekaf.unselected', []);
+			$this.trigger('unselected.rekaf', []);
 			priv.updateList.apply($this);
 			priv.closeList.apply($this);
 		},
@@ -120,7 +120,7 @@
 
 			//logging all touches on screen.
 			$(window).on({
-				touchstart: function(e) {
+				'touchstart.rekaf': function(e) {
 					$this.set.touch = true;
 					winTouches.startX = e.originalEvent.targetTouches[0].clientX;
 					winTouches.startY = e.originalEvent.targetTouches[0].clientY;
@@ -128,7 +128,7 @@
 					winTouches.endY = e.originalEvent.targetTouches[0].clientY;
 					winTouches.moved = false;
 				},
-				touchmove: function(e) {
+				'touchmove.rekaf': function(e) {
 					winTouches.endX = e.originalEvent.targetTouches[0].clientX;
 					winTouches.endY = e.originalEvent.targetTouches[0].clientY;
 					if (!touchClick()) {
@@ -138,7 +138,7 @@
 				}
 			});
 
-			$this.on('click', '.' + $this.set.titleClass, function(e) {
+			$this.on('click.rekaf', '.' + $this.set.titleClass, function(e) {
 				e.stopPropagation();
 
 				if (!$this.hasClass('rekaf--opened')) {
@@ -148,11 +148,11 @@
 				}
 			});
 
-			$this.on('rekaf.resetSelect', function() {
+			$this.on('resetSelect.rekaf', function() {
 				priv.resetList.apply($this);
 			});
 
-			$this.on('click', 'li', function(e) {
+			$this.on('click.rekaf', 'li', function(e) {
 				var $li = $(this);
 				var isSelected = $li.hasClass($this.set.selectedClass);
 				var content = '';
@@ -183,12 +183,12 @@
 				}
 			});
 
-			$('#' + $this.set.screenID).on('click', function() {
+			$('#' + $this.set.screenID).on('click.rekaf', function() {
 				priv.closeList.apply($this);
 			});
 
 			if (!$this.set.useScreen) {				
-				$(document).on('click touchend', function(e) {
+				$(document).on('click.rekaf touchend.rekaf', function(e) {
 					//If list is opened and interaction is outside of the list.
 					if ($this.hasClass('rekaf--opened') && $(e.target).closest('.rekaf--opened').length === 0) {
 						//If touch enabled and touch is not a click return
@@ -199,7 +199,19 @@
 					}
 				});
 			}
+		},
+		disableEvents: function() {
+			var $this = this;
 
+			$(window).off('.rekaf');
+			$(document).off('.rekaf');
+			$this.off('.rekaf');
+			$('#' + $this.set.screenID).off('.rekaf');
+		},
+		dismantle: function() {
+			var $this = this;
+
+			priv.resetList.apply($this);
 		}
 	};
 
@@ -286,6 +298,26 @@
 
 				priv.resetList.apply($this);
 
+			});
+		},
+		destroy: function(options) {
+			return this.each(function() {
+				var $this = $(this);
+				options = options || {};  
+
+				$this.set = $this.data();
+
+				//Remove events
+				priv.disableEvents.apply($this);
+
+				//Remove elements
+				if (options.leaveHTML === undefined) {
+					priv.dismantle.apply($this, [options]);
+				}
+
+				//Remove data
+				$this.removeData();
+				delete $this.set;
 			});
 		}
 	};

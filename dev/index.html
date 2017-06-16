@@ -75,6 +75,7 @@
 						<li class="selected"><a href="#"><span><span class="swatch" style="background-color: #53777a;"></span>Petrol</span></a></li>
 					</ul>
 				</div>
+				<a class="btn destroy-list" href="#">Destroy list above</a><a class="btn create-list" href="#">Create list above</a>
 			</section>
 			<section>
 				<h3>Multiselect</h3>
@@ -122,6 +123,8 @@
 		<script type="text/javascript" src="/js/rekaf.js"></script>
 		<script>
 			$(document).ready(function() {
+				var gridShowing = false;
+
 				$('.input-select').rekaf();
 
 				$('.toggle-select').rekaf({
@@ -136,7 +139,23 @@
 					useHTML: true,
 					multiselect: true,
 					preventClose: true,
-				})
+					useScreen: false,
+				});
+
+				$('.destroy-list').on('click', function(e) {
+					e.preventDefault();
+					$('.html-multiselect').rekaf('destroy');
+				});
+
+				$('.create-list').on('click', function(e) {
+					e.preventDefault();
+					$('.html-multiselect').rekaf({
+						useHTML: true,
+						multiselect: true,
+						preventClose: true,
+						useScreen: false,
+					});
+				});
 
 				$('.rekaf--multiSelect').rekaf({
 					multiselect: true,
@@ -146,6 +165,7 @@
 
 				$('.open-list').on('click', function(e){
 					e.preventDefault();
+					e.stopPropagation();
 					$(this).closest('section').find('.rekaf').rekaf('open');
 				});
 
@@ -154,13 +174,13 @@
 					$('.rekaf--multiSelect').rekaf('reset');
 				});
 
-				$('.single-select').on('rekaf.selected', function(e, value){
+				$('.single-select').on('selected.rekaf', function(e, value){
 					//Event handling of when an item is selected
 					var $sel = $(this).closest('section').find('.trig-selected');
 					$sel.stop(true,true).text(value + ' - selected').show().fadeOut(2000);
 				});
 
-				$('.single-select').on('rekaf.unselected', function(e, value){
+				$('.single-select').on('unselected.rekaf', function(e, value){
 					//Event handling of when an item is unselected
 					var $sel = $(this).closest('section').find('.trig-unselected');
 					$sel.stop(true,true).text(value + ' - unselected').show().fadeOut(2000);

@@ -143,7 +143,7 @@ Helpful to get some debugging data. This should be off for production prints obj
 
 ### Events ###
 
-#### rekaf.selected ####
+#### selected.rekaf ####
 
 An option has been selected. This triggers an event on the element that has been called with rekaf.
 
@@ -151,7 +151,7 @@ An option has been selected. This triggers an event on the element that has been
 		//Do something now a value is selected.
 	})
 
-#### rekaf.unselected ####
+#### unselected.rekaf ####
 
 An option has been unselected. This triggers an event on the element that has been called with rekaf. This often means that it now has no value.
 
@@ -159,7 +159,7 @@ An option has been unselected. This triggers an event on the element that has be
 		//Do something now the value is unselected.
 	})
 
-#### rekaf.opened ####
+#### opened.rekaf ####
 
 The selector has been opened.
 
@@ -187,8 +187,18 @@ Clear all lists that have previously selected items.
 
 	$(selector).rekaf('reset');
 
+#### destroy ####
+
+Remove all events and data from lists and all html.  
+Adding the option `leaveHTML` and setting it to true will only remove events and data.
+
+	$(selector).rekaf('destroy', {leaveHTML: false});
+
 
 ### Changelog ###
+
+**Version 1.2.0**   
+Event namespacing now follows the standard with `action.pluginName` which triggered events are compatible with prior versions. Added the destroy method useful for lists updated from AJAX.
 
 **Version 1.1.2**   
 Fixed useScreen click listener.
