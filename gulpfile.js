@@ -107,7 +107,7 @@ gulp.task('publish', ['clean-live'], function() {
 
 gulp.task('browser-sync', function() {
     browserSync.init(null, {
-        proxy: vars.pluginName+".dev"
+        proxy: vars.pluginName+".test"
     });
 });
 

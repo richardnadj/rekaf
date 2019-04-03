@@ -127,7 +127,7 @@ This is a superior version of using a screen to detect when to close the select.
 *Default* `false`   
 *Expects* `boolean`
 
-Copy HTML from selected item. Content must be wrapped within HTML. Adjacent textnodes are not copied.
+Copy HTML from selected item. Content must be wrapped within HTML. If no HTML is present any text nodes will instead be copied. If HTML is present adjacent textnodes are not copied.
 
 	$(selector).rekaf({useScreen: false});
 
@@ -196,6 +196,9 @@ Adding the option `leaveHTML` and setting it to true will only remove events and
 
 
 ### Changelog ###
+
+**Version 1.3.0**   
+`useHTML` now fallbacks to using text if no children nodes are available.
 
 **Version 1.2.0**   
 Event namespacing now follows the standard with `action.pluginName` which triggered events are compatible with prior versions. Added the destroy method useful for lists updated from AJAX.

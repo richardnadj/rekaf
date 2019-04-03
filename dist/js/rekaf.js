@@ -9,8 +9,9 @@
 	var priv = {
 		init: function() {
 			var $this = this;
+			var htmlContents = $this.find('.' + $this.set.titleClass).children().length > 0 ? $this.find('.' + $this.set.titleClass).children().clone() : $this.find('.' + $this.set.titleClass).text();
 
-			$this.set.initialContents = $this.set.useHTML ? $this.find('.' + $this.set.titleClass).children().clone() : $this.find('.' + $this.set.titleClass).text();
+			$this.set.initialContents = $this.set.useHTML ? htmlContents : $this.find('.' + $this.set.titleClass).text();
 			priv.checkDisabledInputs.apply($this);
 			priv.updateList.apply($this);
 			priv.enableEvents.apply($this);
@@ -54,11 +55,12 @@
 			$this.find('li').each(function(i) {
 				var content = $(this).text();
 				var innerText = '';
+				var htmlContents = $(this).find('a').children().length > 0 ? $(this).find('a').children().clone() : $(this).find('a').text();
 
 				if ($(this).hasClass($this.set.disabledClass) || $(this).find('.' + $this.set.disabledClass).length > 0) return;
 
 				if ($this.set.useHTML) {
-					content = $(this).find('a').length > 0 ? $(this).find('a').children().clone() : $li.children().clone().remove('input');
+					content = $(this).find('a').length > 0 ? htmlContents : $li.children().clone().remove('input');
 				} else if (content === '' && $(this).attr('title') !== undefined) {
 					content = $(this).attr('title');
 				}
@@ -71,6 +73,10 @@
 					}
 				}
 			});
+
+			if ($this.set.debug === true) {
+				console.log('Selected -> ', contentList);
+			}
 
 			if (contentList.length > 0) {
 				if ($this.set.useHTML) {
