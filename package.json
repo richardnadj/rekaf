@@ -1,6 +1,6 @@
 {
   "name": "rekaf",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "description": "Rekaf a fake select element",
   "main": "dist/js/rekaf.min.js",
   "stlye": "dist/js/rekaf.min.css",

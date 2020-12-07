@@ -197,6 +197,9 @@ Adding the option `leaveHTML` and setting it to true will only remove events and
 
 ### Changelog ###
 
+**Version 1.3.2**   
+`useHTML` only copy span tags to title not all HTML. Cloning all HTML prevented select from closing.
+
 **Version 1.3.1**   
 `useHTML` fixed missing $li variable.
 
