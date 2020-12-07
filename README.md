@@ -197,6 +197,9 @@ Adding the option `leaveHTML` and setting it to true will only remove events and
 
 ### Changelog ###
 
+**Version 1.3.1**   
+`useHTML` fixed missing $li variable.
+
 **Version 1.3.0**   
 `useHTML` now fallbacks to using text if no children nodes are available.
 

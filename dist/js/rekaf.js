@@ -60,7 +60,7 @@
 				if ($(this).hasClass($this.set.disabledClass) || $(this).find('.' + $this.set.disabledClass).length > 0) return;
 
 				if ($this.set.useHTML) {
-					content = $(this).find('a').length > 0 ? htmlContents : $li.children().clone().remove('input');
+					content = $(this).find('a').length > 0 ? htmlContents : $(this).children().clone();
 				} else if (content === '' && $(this).attr('title') !== undefined) {
 					content = $(this).attr('title');
 				}
